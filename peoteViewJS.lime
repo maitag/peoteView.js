@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<project>
+	
+	<meta title="peote_view" package="de.peote.view" version="0.1.1" company="Sylvio Sell - maitag" />
+	
+	<!-- peoteView.js will be moved to Samples folder -->
+	<app main="MainJS" path="Export" file="../../../Samples/peoteView" />
+	
+	<window fps="60" width="0" height="0" vsync="true" antialiasing="4" resizable="true" require-shaders="true" />
+	
+	<source path="Source" />
+	<!-- external haxe libs -->
+	<source path="../PeoteView/Source" />
+	
+	<haxelib name="lime" />
+	<haxelib name="format" />
+	
+	<!-- assets for js_examples not preloaded, so better testing locally with FF -->
+	
+</project>
