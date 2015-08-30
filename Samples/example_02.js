@@ -47,6 +47,7 @@ function onLimeEmbed()
 	peoteView.setDisplaylist( { displaylist:0, type:1,
 		enable:true,
 		max_elements:100000, max_programs:2, buffer_segment_size:1000,
+		w:1920, h:1280,
 		z:0
 	});
 	

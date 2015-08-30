@@ -46,6 +46,8 @@ import de.peote.view.PeoteView;
     private var height: Int;
     private var mouse_x: Int = 0;
     private var mouse_y: Int = 0;
+    private var xOffset: Int = 0;
+    private var yOffset: Int = 0;
     private var zoom: Int = 1;
 
 	public static var peoteView:PeoteView;
@@ -86,7 +88,7 @@ import de.peote.view.PeoteView;
 	// ----------- Render Loop ------------------------------------
 	public override function render(renderer:Renderer):Void
 	{
-		peoteView.render(Math.floor((Timer.stamp() - startTime) * 100) / 100, width, height, mouse_x, mouse_y, zoom);
+		peoteView.render(Math.floor((Timer.stamp() - startTime) * 100) / 100, width, height, mouse_x, mouse_y, zoom, xOffset, yOffset);
 	}
 	
 	// ------------------------------------------------------------
@@ -102,19 +104,21 @@ import de.peote.view.PeoteView;
 		//trace("onMouseMove: " + x + "," + y );
 		mouse_x = Std.int(x);
 		mouse_y = Std.int(y);
-		
+		setOffsets();
 	}
 	public override function onTouchMove (touch:Touch):Void
 	{
 		trace("onTouchMove: " + touch.x + "," + touch.y );
 		mouse_x = Std.int(touch.x); //* window.width;
 		mouse_y = Std.int(touch.y);
+		setOffsets();
 	}
 	public override function onMouseDown (window:Window, x:Float, y:Float, button:Int):Void
 	{	
 		trace("onMouseDown: x=" + x + " y="+ y);
 		if ( button == 0) zoom++;
-		else if (button == 1 && zoom>1) zoom--;
+		else if (button == 1 && zoom > 1) zoom--;
+		setOffsets();
 	}
 	public override function onMouseUp (window:Window, x:Float, y:Float, button:Int):Void
 	{	
@@ -125,8 +129,17 @@ import de.peote.view.PeoteView;
 		trace("onmousewheel: " + deltaX + ',' + deltaY );
 		if ( deltaY>0 ) zoom++;
 		else if (zoom > 1) zoom--;
+		setOffsets();
 	}
 
+	// end Event Handler ------------------------------
+	// ------------------------------------------------------------
+	
+	public inline function setOffsets():Void {
+		xOffset = Std.int( - width*(zoom-1)/zoom * mouse_x/width);
+		yOffset = Std.int( - height*(zoom-1)/zoom * mouse_y/height);
+
+	}
 	
 	
 }

@@ -30,7 +30,7 @@ ApplicationMain.create = function() {
 	ApplicationMain.preloader.load(urls,types);
 };
 ApplicationMain.main = function() {
-	ApplicationMain.config = { build : "14", company : "Sylvio Sell - maitag", file : "../../../Samples/peoteView", fps : 60, name : "peote_view", orientation : "", packageName : "de.peote.view", version : "0.1.1", windows : [{ antialiasing : 4, background : 16777215, borderless : false, depthBuffer : false, display : 0, fullscreen : false, hardware : true, height : 0, parameters : "{}", resizable : true, stencilBuffer : false, title : "peote_view", vsync : true, width : 0, x : null, y : null}]};
+	ApplicationMain.config = { build : "15", company : "Sylvio Sell - maitag", file : "../../../Samples/peoteView", fps : 60, name : "peote_view", orientation : "", packageName : "de.peote.view", version : "0.1.1", windows : [{ antialiasing : 4, background : 16777215, borderless : false, depthBuffer : false, display : 0, fullscreen : false, hardware : true, height : 0, parameters : "{}", resizable : true, stencilBuffer : false, title : "peote_view", vsync : true, width : 0, x : null, y : null}]};
 };
 ApplicationMain.start = function() {
 	var result = ApplicationMain.app.exec();
@@ -1011,6 +1011,8 @@ lime.app.Application.prototype = $extend(lime.app.Module.prototype,{
 });
 var MainJS = $hx_exports.PeoteView = function() {
 	this.zoom = 1;
+	this.yOffset = 0;
+	this.xOffset = 0;
 	this.mouse_y = 0;
 	this.mouse_x = 0;
 	lime.app.Application.call(this);
@@ -1040,37 +1042,49 @@ MainJS.prototype = $extend(lime.app.Application.prototype,{
 				onLimeEmbed();;
 				break;
 			default:
-				haxe.Log.trace("only opengl supported",{ fileName : "MainJS.hx", lineNumber : 82, className : "MainJS", methodName : "onWindowCreate"});
+				haxe.Log.trace("only opengl supported",{ fileName : "MainJS.hx", lineNumber : 84, className : "MainJS", methodName : "onWindowCreate"});
 			}
 		}
 	}
 	,render: function(renderer) {
-		MainJS.peoteView.render(Math.floor((haxe.Timer.stamp() - MainJS.startTime) * 100) / 100,this.width,this.height,this.mouse_x,this.mouse_y,this.zoom);
+		MainJS.peoteView.render(Math.floor((haxe.Timer.stamp() - MainJS.startTime) * 100) / 100,this.width,this.height,this.mouse_x,this.mouse_y,this.zoom,this.xOffset,this.yOffset);
 	}
 	,onWindowResize: function(window,width,height) {
-		haxe.Log.trace("onWindowResize:" + window.__width + "," + window.__height,{ fileName : "MainJS.hx", lineNumber : 96, className : "MainJS", methodName : "onWindowResize"});
+		haxe.Log.trace("onWindowResize:" + window.__width + "," + window.__height,{ fileName : "MainJS.hx", lineNumber : 98, className : "MainJS", methodName : "onWindowResize"});
 		this.width = window.__width;
 		this.height = window.__height;
 	}
 	,onMouseMove: function(window,x,y) {
 		this.mouse_x = x | 0;
 		this.mouse_y = y | 0;
+		this.xOffset = -this.width * (this.zoom - 1) / this.zoom * this.mouse_x / this.width | 0;
+		this.yOffset = -this.height * (this.zoom - 1) / this.zoom * this.mouse_y / this.height | 0;
 	}
 	,onTouchMove: function(touch) {
-		haxe.Log.trace("onTouchMove: " + touch.x + "," + touch.y,{ fileName : "MainJS.hx", lineNumber : 109, className : "MainJS", methodName : "onTouchMove"});
+		haxe.Log.trace("onTouchMove: " + touch.x + "," + touch.y,{ fileName : "MainJS.hx", lineNumber : 111, className : "MainJS", methodName : "onTouchMove"});
 		this.mouse_x = touch.x | 0;
 		this.mouse_y = touch.y | 0;
+		this.xOffset = -this.width * (this.zoom - 1) / this.zoom * this.mouse_x / this.width | 0;
+		this.yOffset = -this.height * (this.zoom - 1) / this.zoom * this.mouse_y / this.height | 0;
 	}
 	,onMouseDown: function(window,x,y,button) {
-		haxe.Log.trace("onMouseDown: x=" + x + " y=" + y,{ fileName : "MainJS.hx", lineNumber : 115, className : "MainJS", methodName : "onMouseDown"});
+		haxe.Log.trace("onMouseDown: x=" + x + " y=" + y,{ fileName : "MainJS.hx", lineNumber : 118, className : "MainJS", methodName : "onMouseDown"});
 		if(button == 0) this.zoom++; else if(button == 1 && this.zoom > 1) this.zoom--;
+		this.xOffset = -this.width * (this.zoom - 1) / this.zoom * this.mouse_x / this.width | 0;
+		this.yOffset = -this.height * (this.zoom - 1) / this.zoom * this.mouse_y / this.height | 0;
 	}
 	,onMouseUp: function(window,x,y,button) {
-		haxe.Log.trace("onmouseup: " + button + " x=" + x + " y=" + y,{ fileName : "MainJS.hx", lineNumber : 121, className : "MainJS", methodName : "onMouseUp"});
+		haxe.Log.trace("onmouseup: " + button + " x=" + x + " y=" + y,{ fileName : "MainJS.hx", lineNumber : 125, className : "MainJS", methodName : "onMouseUp"});
 	}
 	,onMouseWheel: function(window,deltaX,deltaY) {
-		haxe.Log.trace("onmousewheel: " + deltaX + "," + deltaY,{ fileName : "MainJS.hx", lineNumber : 125, className : "MainJS", methodName : "onMouseWheel"});
+		haxe.Log.trace("onmousewheel: " + deltaX + "," + deltaY,{ fileName : "MainJS.hx", lineNumber : 129, className : "MainJS", methodName : "onMouseWheel"});
 		if(deltaY > 0) this.zoom++; else if(this.zoom > 1) this.zoom--;
+		this.xOffset = -this.width * (this.zoom - 1) / this.zoom * this.mouse_x / this.width | 0;
+		this.yOffset = -this.height * (this.zoom - 1) / this.zoom * this.mouse_y / this.height | 0;
+	}
+	,setOffsets: function() {
+		this.xOffset = -this.width * (this.zoom - 1) / this.zoom * this.mouse_x / this.width | 0;
+		this.yOffset = -this.height * (this.zoom - 1) / this.zoom * this.mouse_y / this.height | 0;
 	}
 	,__class__: MainJS
 });
@@ -1445,7 +1459,9 @@ de.peote.view.PeoteView.prototype = {
 		if(param.h != null) de.peote.view.PeoteView.elementDefaults.h = param.h;
 		if(param.z != null) de.peote.view.PeoteView.elementDefaults.z = param.z;
 	}
-	,render: function(time,width,height,mouse_x,mouse_y,zoom) {
+	,render: function(time,width,height,mouseX,mouseY,zoom,xOffset,yOffset) {
+		if(yOffset == null) yOffset = 0;
+		if(xOffset == null) xOffset = 0;
 		lime.graphics.opengl.GL.context.viewport(0,0,width,height);
 		lime.graphics.opengl.GL.context.scissor(0,0,width,height);
 		lime.graphics.opengl.GL.context.enable(3089);
@@ -1453,7 +1469,19 @@ de.peote.view.PeoteView.prototype = {
 		lime.graphics.opengl.GL.context.clear(16640);
 		this.dl = this.startDisplaylist;
 		while(this.dl != null) {
-			lime.graphics.opengl.GL.context.scissor(this.dl.x,(this.dl.h != 0?height - this.dl.h:0) - this.dl.y,this.dl.w != 0?this.dl.w:width,this.dl.h != 0?this.dl.h:height);
+			var sx = (this.dl.x + xOffset) * zoom;
+			var sy = (this.dl.y + yOffset) * zoom;
+			var sw;
+			if(this.dl.w != 0) sw = this.dl.w * zoom; else sw = width;
+			var sh;
+			if(this.dl.h != 0) sh = this.dl.h * zoom; else sh = height;
+			if(sx < 0) sw += sx;
+			sx = Std["int"](Math.max(0,Math.min(width,sx)));
+			sw = Std["int"](Math.max(0,Math.min(width - sx,sw)));
+			if(sy < 0) sh += sy;
+			sy = Std["int"](Math.max(0,Math.min(height,sy)));
+			sh = Std["int"](Math.max(0,Math.min(height - sy,sh)));
+			lime.graphics.opengl.GL.context.scissor(sx,height - sh - sy,sw,sh);
 			lime.graphics.opengl.GL.context.enable(2929);
 			lime.graphics.opengl.GL.context.depthFunc(515);
 			lime.graphics.opengl.GL.context.enable(3042);
@@ -1479,11 +1507,11 @@ de.peote.view.PeoteView.prototype = {
 				this.ap = this.dl.buffer.activeProgram[i];
 				lime.graphics.opengl.GL.context.useProgram(this.ap.program.glProgram);
 				lime.graphics.opengl.GL.context.uniform1i(this.ap.program.uniforms[2],0);
-				lime.graphics.opengl.GL.context.uniform2f(this.ap.program.uniforms[3],mouse_x / width * 2 - 1,mouse_y / height * 2 - 1);
+				lime.graphics.opengl.GL.context.uniform2f(this.ap.program.uniforms[3],mouseX / width * 2 - 1,mouseY / height * 2 - 1);
 				lime.graphics.opengl.GL.context.uniform2f(this.ap.program.uniforms[4],width,height);
 				lime.graphics.opengl.GL.context.uniform1f(this.ap.program.uniforms[5],time);
-				lime.graphics.opengl.GL.context.uniform1f(this.ap.program.uniforms[6],zoom);
-				lime.graphics.opengl.GL.context.uniform2f(this.ap.program.uniforms[7],this.dl.x + this.dl.xOffset,this.dl.y + this.dl.yOffset);
+				lime.graphics.opengl.GL.context.uniform1f(this.ap.program.uniforms[6],this.dl.zoom * zoom);
+				lime.graphics.opengl.GL.context.uniform2f(this.ap.program.uniforms[7],this.dl.x + this.dl.xOffset + xOffset,this.dl.y + this.dl.yOffset + yOffset);
 				lime.graphics.opengl.GL.context.drawArrays(5,this.ap.start,this.ap.size);
 			}
 			this.dl.elemBuff.disableVertexAttributes();
@@ -1772,6 +1800,7 @@ de.peote.view.displaylist.Displaylist = function(param,programCache,texturecache
 	this.z = 0;
 	this.yOffset = 0;
 	this.xOffset = 0;
+	this.zoom = 1;
 	this.h = 0;
 	this.w = 0;
 	this.y = 0;
@@ -1786,7 +1815,7 @@ de.peote.view.displaylist.Displaylist = function(param,programCache,texturecache
 	var this1;
 	this1 = new Array(param.max_elements);
 	this.element = this1;
-	haxe.Log.trace("max_segments: " + (Math.floor(param.max_elements / param.buffer_segment_size) + param.max_programs),{ fileName : "Displaylist.hx", lineNumber : 92, className : "de.peote.view.displaylist.Displaylist", methodName : "new"});
+	haxe.Log.trace("max_segments: " + (Math.floor(param.max_elements / param.buffer_segment_size) + param.max_programs),{ fileName : "Displaylist.hx", lineNumber : 94, className : "de.peote.view.displaylist.Displaylist", methodName : "new"});
 	this.buffer = new de.peote.view.Buffer(param.buffer_segment_size,Math.floor(param.max_elements / param.buffer_segment_size) + param.max_programs);
 	this.elemBuff = js.Boot.__cast(new de.peote.view.displaylist.Displaylist.BUFFER(this.type,this.buffer) , de.peote.view.element.I_ElementBuffer);
 	programCache.addDisplaylist(this.type,this.elemBuff);
@@ -1805,6 +1834,7 @@ de.peote.view.displaylist.Displaylist.prototype = {
 		if(param.y != null) this.y = param.y;
 		if(param.w != null) this.w = param.w;
 		if(param.h != null) this.h = param.h;
+		if(param.zoom != null) this.h = param.zoom;
 		if(param.xOffset != null) this.xOffset = param.xOffset;
 		if(param.yOffset != null) this.yOffset = param.yOffset;
 		if(param.r != null) this.r = param.r;
@@ -1862,6 +1892,7 @@ de.peote.view.displaylist.Displaylist_de_peote_view_element_ElementAnim_de_peote
 	this.z = 0;
 	this.yOffset = 0;
 	this.xOffset = 0;
+	this.zoom = 1;
 	this.h = 0;
 	this.w = 0;
 	this.y = 0;
@@ -1876,7 +1907,7 @@ de.peote.view.displaylist.Displaylist_de_peote_view_element_ElementAnim_de_peote
 	var this1;
 	this1 = new Array(param.max_elements);
 	this.element = this1;
-	haxe.Log.trace("max_segments: " + (Math.floor(param.max_elements / param.buffer_segment_size) + param.max_programs),{ fileName : "Displaylist.hx", lineNumber : 92, className : "de.peote.view.displaylist.Displaylist", methodName : "new"});
+	haxe.Log.trace("max_segments: " + (Math.floor(param.max_elements / param.buffer_segment_size) + param.max_programs),{ fileName : "Displaylist.hx", lineNumber : 94, className : "de.peote.view.displaylist.Displaylist", methodName : "new"});
 	this.buffer = new de.peote.view.Buffer(param.buffer_segment_size,Math.floor(param.max_elements / param.buffer_segment_size) + param.max_programs);
 	this.elemBuff = js.Boot.__cast(new de.peote.view.element.ElementAnimBuffer(this.type,this.buffer) , de.peote.view.element.I_ElementBuffer);
 	programCache.addDisplaylist(this.type,this.elemBuff);
@@ -1895,6 +1926,7 @@ de.peote.view.displaylist.Displaylist_de_peote_view_element_ElementAnim_de_peote
 		if(param.y != null) this.y = param.y;
 		if(param.w != null) this.w = param.w;
 		if(param.h != null) this.h = param.h;
+		if(param.zoom != null) this.h = param.zoom;
 		if(param.xOffset != null) this.xOffset = param.xOffset;
 		if(param.yOffset != null) this.yOffset = param.yOffset;
 		if(param.r != null) this.r = param.r;
@@ -1952,6 +1984,7 @@ de.peote.view.displaylist.Displaylist_de_peote_view_element_ElementSimple_de_peo
 	this.z = 0;
 	this.yOffset = 0;
 	this.xOffset = 0;
+	this.zoom = 1;
 	this.h = 0;
 	this.w = 0;
 	this.y = 0;
@@ -1966,7 +1999,7 @@ de.peote.view.displaylist.Displaylist_de_peote_view_element_ElementSimple_de_peo
 	var this1;
 	this1 = new Array(param.max_elements);
 	this.element = this1;
-	haxe.Log.trace("max_segments: " + (Math.floor(param.max_elements / param.buffer_segment_size) + param.max_programs),{ fileName : "Displaylist.hx", lineNumber : 92, className : "de.peote.view.displaylist.Displaylist", methodName : "new"});
+	haxe.Log.trace("max_segments: " + (Math.floor(param.max_elements / param.buffer_segment_size) + param.max_programs),{ fileName : "Displaylist.hx", lineNumber : 94, className : "de.peote.view.displaylist.Displaylist", methodName : "new"});
 	this.buffer = new de.peote.view.Buffer(param.buffer_segment_size,Math.floor(param.max_elements / param.buffer_segment_size) + param.max_programs);
 	this.elemBuff = js.Boot.__cast(new de.peote.view.element.ElementSimpleBuffer(this.type,this.buffer) , de.peote.view.element.I_ElementBuffer);
 	programCache.addDisplaylist(this.type,this.elemBuff);
@@ -1985,6 +2018,7 @@ de.peote.view.displaylist.Displaylist_de_peote_view_element_ElementSimple_de_peo
 		if(param.y != null) this.y = param.y;
 		if(param.w != null) this.w = param.w;
 		if(param.h != null) this.h = param.h;
+		if(param.zoom != null) this.h = param.zoom;
 		if(param.xOffset != null) this.xOffset = param.xOffset;
 		if(param.yOffset != null) this.yOffset = param.yOffset;
 		if(param.r != null) this.r = param.r;
