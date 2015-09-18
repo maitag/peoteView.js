@@ -1,10 +1,10 @@
 ###peoteView.js - 2d webgl render engine
 
-This library depends on [PeoteView](https://github.com/maitag/peote-view).
+This library depends on [peote-view](https://github.com/maitag/peote-view).
 
 ####build javascript library  
 
-check source for PeoteView-class inside [peoteViewJS.lime](https://github.com/maitag/peoteView.js/blob/master/peoteViewJS.lime#L13)  
+check source path for PeoteView class inside [peoteViewJS.lime](https://github.com/maitag/peoteView.js/blob/master/peoteViewJS.lime#L13)  
 build Samples/peoteView.js with: `lime build peoteViewJS.lime html5`
 
 more [samples here](http://maitag.de/~semmi/haxelime/viewer_gpuanimtiles/)
