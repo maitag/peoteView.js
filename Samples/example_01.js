@@ -51,9 +51,15 @@ function onLimeEmbed()
 	// new Displaylist
 	peoteView.setDisplaylist( { displaylist:0, type:1,
 		enable:true,
-		max_elements:w*h+1, max_programs:2, buffer_segment_size:1000,
+		elements:1,
 		w:1920, h:1280,
 		z:0
+	});
+	peoteView.setDisplaylist( { displaylist:1, type:1,
+		enable:true,
+		elements:w*h,
+		w:1920, h:1280,
+		z:1
 	});
 		
 	// fractal BG
@@ -73,7 +79,7 @@ function onLimeEmbed()
 	// tiles
 	for (var x=0; x<w; x++)
 		for (var y=0; y<h; y++)
-			peoteView.setElement( { element:1 + y*w +x, displaylist:0,
+			peoteView.setElement( { element: y*w+x, displaylist:1,
 				start: {
 					x: x*s, y: y*s-s,
 					w:s, h:s,
@@ -85,14 +91,14 @@ function onLimeEmbed()
 					time:t + h/speed
 				},
 				z: -1,
-				program:1, image:Math.floor(Math.random() * 2), tile:1+Math.floor(Math.random() * 255)
+				program:1, image:Math.floor(Math.random()*2), tile:1+Math.floor(Math.random() * 255)
 			});
 	
 	// Timer every second
 	window.setInterval(function() {
 		t = PeoteView.getTime();
 		for (var x=0; x<w; x++)
-			peoteView.setElement( { element: 1+last_y*w+x, displaylist:0,
+			peoteView.setElement( { element: last_y*w+x, displaylist:1,
 				start: {
 					y: -s,
 					time:t
@@ -108,7 +114,7 @@ function onLimeEmbed()
 			last_y = h-1;
 			// anim BG
 			if (switchBGanim == 1)
-				peoteView.setElement( { element:0,
+				peoteView.setElement( { element:0, displaylist:0,
 					end: {
 						x:0, y:0, w:3000, h:3000,
 						time:t+h/speed
