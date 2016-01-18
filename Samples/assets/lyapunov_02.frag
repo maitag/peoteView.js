@@ -9,7 +9,6 @@
    #                          (have fun!;)                                       #
    ############################################################################### */
    
-precision mediump float;
 
 varying vec2 vTexCoord;
 uniform sampler2D uImage;
@@ -25,11 +24,11 @@ void main( void ) {
 	//float b = position.y;
 	//float a = gl_FragCoord.x / uResolution.x;
 	//float b = gl_FragCoord.y / uResolution.y;
-	float a = vTexCoord.x*22.0; // uResolution.x;
-	float b = vTexCoord.y*22.0; // uResolution.y;
+	float a = vTexCoord.x/400.0; // uResolution.x;
+	float b = vTexCoord.y/400.0; // uResolution.y;
 	
 	// PArameter
-	float p1 = 1.7+(uMouse.x / 3.0);
+	float p1 = 1.9+(uMouse.x / 3.0);
 	float p2 = 1.7+(uMouse.y / 3.0);
 	//float p1 = 2.4;
 	//float p2 = 1.7+sin(time);
@@ -59,10 +58,10 @@ void main( void ) {
 	index = index / 10.0;
 	
 	if (index > 0.0) {
-		gl_FragColor = vec4(index, index, 0.05, 0.0);
+		gl_FragColor = vec4(index*0.5, index*0.05, 0.05, 0.7);
 	}
 	else {
-		gl_FragColor = vec4((0.0-index)*0.95, (0.0-index)*0.93, (0.0-index)*0.9, (0.0-index)*0.3);
+		gl_FragColor = vec4((0.0-index)*0.35, (0.0-index)*0.13, (0.0-index)*0.01, 0.7);
 	}
 }
 

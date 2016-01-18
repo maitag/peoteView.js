@@ -35,16 +35,16 @@ function onLimeEmbed()
 	peoteView = PeoteView.init(1, 2); // max_displaylists, max_programs
 	
 	// set shaders
-	peoteView.setProgram(0, "assets/lyapunov_01.frag");
+	peoteView.setProgram(0, "assets/lyapunov_02.frag");
 	peoteView.setProgram(1); // default image program
 	
 	// set images
 	//peoteView.setImage(0, "assets/peote_font_green.png", 512, 512);
-	peoteView.setImage(1, "assets/peote_font_green.png", 512, 512);
+	peoteView.setImage(1, "assets/peote_font_white.png", 512, 512);
 	peoteView.setImage(2, "assets/peote_tiles.png", 512, 512);
 	
 	// new Displaylist
-	peoteView.setDisplaylist( { displaylist:0, type:1,
+	peoteView.setDisplaylist( { displaylist:0, type:DType.ANIM|DType.RGBA,
 		enable:true,
 		elements:100000, max_programs:2, segments:1000,
 		w:1920, h:1280,
@@ -76,28 +76,28 @@ function onLoadAsciiFont(img)
 
 	var peoteTimer2 = new PeoteTimer();
 	peoteTimer2
-	.add(function(d){ animElements(drawLetter(135, img, 1,2,  110, 100, 12, 12, 1), d); },	2.0 , 7.0 )
+	.add(function(d){ animElements(drawLetter(3, img, 1,2,  650, -50, 12, 12, 1), d); },	2.0 , 7.0 )
 	.repeat();
 
 	var peoteTimer = new PeoteTimer();
 	peoteTimer
-	.add(function(d){ animElements(drawLetter("H", img, 1,1,  50,0 ,4,4, 2), d); },	4.0 , 1.0 )
-	.add(function(d){ animElements(drawLetter("e", img, 1,1, 100,0 ,4,4, 2), d); },	3.0, -3.0 )
+	.add(function(d){ animElements(drawLetter("H", img, 1,1,  5,0 ,8,8, 2), d); },	4.0 , 1.0 )
+	.add(function(d){ animElements(drawLetter("e", img, 1,1, 140,0 ,8,8, 2), d); },	3.0, -3.0 )
 	.add(
-		 function(d){ animElements(drawLetter("l", img, 1,1, 150,0 ,4,4, 2), d); }, 	3.0, -2.5
-		,function(d){ animElements(drawLetter("l", img, 1,1, 200,0 ,4,4, 2), d); }, 	3.0, -2.0
+		 function(d){ animElements(drawLetter("l", img, 1,1, 260,0 ,8,8, 2), d); }, 	3.0, -2.5
+		,function(d){ animElements(drawLetter("l", img, 1,1, 350,0 ,8,8, 2), d); }, 	3.0, -2.0
 	)
-	.add(function(d){ animElements(drawLetter("o", img, 1,1, 250,0 ,4,4, 2), d); }, 	4.0, -2.5 )
+	.add(function(d){ animElements(drawLetter("o", img, 1,1, 490,20 ,8,8, 2), d); }, 	4.0, -2.5 )
 	.add(function(d){
 						var peoteTimer1 = new PeoteTimer();
 						peoteTimer1
-						.add(function(d){ animElements(drawLetter("W", img, 1,1, 350,0 ,4,4, 2), d); }, 	1.0, 1 )
-						.add(function(d){ animElements(drawLetter("o", img, 1,1, 400,0 ,4,4, 2), d); }, 	1.0, 0.1 )
-						.add(function(d){ animElements(drawLetter("r", img, 1,1, 450,0 ,4,4, 2), d); }, 	1.0, 0.2 )
-						.add(function(d){ animElements(drawLetter("d", img, 1,1, 500,0 ,4,4, 2), d); }, 	1.0, 0.3 )
+						.add(function(d){ animElements(drawLetter("W", img, 1,1, 50, 220 ,8,8, 2), d); }, 	1.0, 1 )
+						.add(function(d){ animElements(drawLetter("o", img, 1,1, 200, 220 ,8,8, 2), d); }, 	1.0, 0.1 )
+						.add(function(d){ animElements(drawLetter("r", img, 1,1, 330, 220 ,8,8, 2), d); }, 	1.0, 0.2 )
+						.add(function(d){ animElements(drawLetter("d", img, 1,1, 460, 220 ,8,8, 2), d); }, 	1.0, 0.3 )
 						.repeat(2);
 					}, 	7.0, -5 )
-	.add(function(d){ animElements(drawLetter("!", img, 1,1, 550,0 ,4,4, 2), d); }, 	3.0, -2 )
+	.add(function(d){ animElements(drawLetter("!", img, 1,1, 610,200 ,8,8, 2), d); }, 	3.0, -2 )
 	.repeat();
 
 }
@@ -109,11 +109,12 @@ function animElements(elems, duration)
 	peoteTimer.add(function(d){
 		for (var n=0; n < elems.length; n++)
 		{	
-			//Peote.view.animElement(elems[n], Math.random()*1000, 100+Math.random()*800, 0, 10, 10, PeoteView.getTime(), PeoteView.getTime() + duration*5 );
 			peoteView.setElement( { element:elems[n],
+				time:PeoteView.getTime(),
 				end:{
 					x:Math.random()*2000, y:Math.random()*1600,
 					w:10, h:10,
+					rgba:randomInt(256) << 24 | randomInt(256) << 16 | randomInt(256) << 8,
 					time:PeoteView.getTime() + duration*5
 				}
 			});
@@ -125,7 +126,7 @@ function animElements(elems, duration)
 
 function deleteElements(elems)
 {
-	for (var n=0; n < elems.length; n++) Peote.view.delElement(elems[n]);
+	for (var n=0; n < elems.length; n++) peoteView.delElement({element:elems[n]});
 }
 
 
@@ -151,28 +152,26 @@ function drawLetter(_letter, img, shader_nr, image_nr, x, y, w, h, type)
 
 		elems.push(nr);
 		if (type == 1)
-			//Peote.view.setElement( nr++, x+_x*w, y+_y*h,  0, w, h, shader_nr, image_nr, tile_nr);
 			peoteView.setElement( { element:nr++,
 				x:x+_x*w, y:y+_y*h, z:0,
 				w:w, h:h,
 				program:shader_nr, image:image_nr, tile:tile_nr,
-				time:PeoteView.getTime()
+				//time:PeoteView.getTime()
 			});
 		else if (type == 2)
-			//Peote.view.setElement( nr++, x+_x*w, y+_y*h,  0, w, h, shader_nr, image_nr, (typeof(_letter) == "string") ? _letter.charCodeAt(0) : _letter);
 			peoteView.setElement( { element:nr++,
 				x:x+_x*w, y:y+_y*h, z:0,
 				w:w, h:h,
+				rgba:230+randomInt(20) << 24 | 220+randomInt(36) << 16 | randomInt(35) << 8 | 255,
 				program:shader_nr, image:image_nr, tile:(typeof(_letter) == "string") ? _letter.charCodeAt(0) : _letter,
-				time:PeoteView.getTime()
+				//time:PeoteView.getTime()
 			});
 		else 
-			//Peote.view.setElement( nr++, x+_x*w, y+_y*h,  0, w, h, shader_nr, image_nr);
 			peoteView.setElement( { element:nr++,
 				x:x+_x*w, y:y+_y*h, z:0,
 				w:w, h:h,
 				program:shader_nr, image:image_nr,
-				time:PeoteView.getTime()
+				//time:PeoteView.getTime()
 			});
 		
 	}
@@ -193,7 +192,8 @@ function combineAsciiLetter(_letter, img)
 		{
 			var rgba = getPixel(img, x+letter_x*img.width/16, y+letter_y*img.height/16);
 			var alpha = rgba[3];
-			if (alpha > 0) letter.push(new Array(x,y,rgba));
+			//if (alpha > 0) letter.push(new Array(x,y,rgba));
+			if (alpha > 30) letter.push(new Array(x,y,rgba));
 		}
 	}
 	return letter;
@@ -229,5 +229,7 @@ function loadImageData(url, onload_callback)
 	image.src = url;
 }
 			
-			
+function randomInt(a) {
+	return Math.floor(Math.random()*a);
+}			
 			

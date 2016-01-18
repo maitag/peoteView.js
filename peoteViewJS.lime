@@ -6,7 +6,7 @@
 	<!-- peoteView.js will be moved to Samples folder -->
 	<app main="MainJS" path="Export" file="../../../Samples/peoteView" />
 	
-	<window fps="60" width="0" height="0" vsync="true" antialiasing="4" resizable="true" require-shaders="true" />
+	<window fps="60" width="0" height="0" vsync="true" antialiasing="0" resizable="true" require-shaders="true" />
 	
 	<source path="Source" />
 	<!-- external haxe libs -->
@@ -14,6 +14,17 @@
 	
 	<haxelib name="lime" />
 	<haxelib name="format" />
+	
+	<!-- this is for optimize interleave vertex stride (filled auto up to 8 bytecount) .. may buggy on some device -->
+	<haxedef name="peote_fillstride" />
+	
+	<!-- shader float precision for html5 and raspberry pi and android -->
+	<haxedef name="peote_vert_medium_precision" if="html5" />
+	<haxedef name="peote_frag_medium_precision" if="html5" />
+	
+	<haxedef name="no-traces" />
+	
+	<haxeflag name="-dce" value="full" if="html5" />
 	
 	<!-- assets for js_examples not preloaded, so better testing locally with FF -->
 	

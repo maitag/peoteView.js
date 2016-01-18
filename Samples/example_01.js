@@ -49,13 +49,13 @@ function onLimeEmbed()
 	var t = PeoteView.getTime();
 		
 	// new Displaylist
-	peoteView.setDisplaylist( { displaylist:0, type:1,
+	peoteView.setDisplaylist( { displaylist:0, type:DType.ANIM,
 		enable:true,
 		elements:1,
 		w:1920, h:1280,
 		z:0
 	});
-	peoteView.setDisplaylist( { displaylist:1, type:1,
+	peoteView.setDisplaylist( { displaylist:1, type:DType.ANIM,
 		enable:true,
 		elements:w*h,
 		w:1920, h:1280,
@@ -75,10 +75,11 @@ function onLimeEmbed()
 	});
 
 	
-		
+	var i;
 	// tiles
-	for (var x=0; x<w; x++)
-		for (var y=0; y<h; y++)
+	for (var x=0; x<w; x++) {
+		for (var y=0; y<h; y++) {
+			i=randomInt(2);
 			peoteView.setElement( { element: y*w+x, displaylist:1,
 				start: {
 					x: x*s, y: y*s-s,
@@ -91,8 +92,10 @@ function onLimeEmbed()
 					time:t + h/speed
 				},
 				z: -1,
-				program:1, image:Math.floor(Math.random()*2), tile:1+Math.floor(Math.random() * 255)
+				program:1, image:i, tile: ((i==0) ? randomInt(256) : randomInt(64))
 			});
+		}
+	}
 	
 	// Timer every second
 	window.setInterval(function() {
@@ -136,3 +139,6 @@ function onLimeEmbed()
 	
 }
 
+function randomInt(a) {
+	return Math.floor(Math.random()*a);
+}

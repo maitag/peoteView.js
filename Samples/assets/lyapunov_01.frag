@@ -8,8 +8,7 @@
    #    http://maitag.de/~semmi/                                                 #
    #                          (have fun!;)                                       #
    ############################################################################### */
-   
-precision mediump float;
+
 
 varying vec2 vTexCoord;
 uniform sampler2D uImage;
