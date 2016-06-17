@@ -29,7 +29,7 @@ ApplicationMain.create = function() {
 	ApplicationMain.preloader.load(urls,types);
 };
 ApplicationMain.main = function() {
-	ApplicationMain.config = { build : "46", company : "Sylvio Sell - maitag", file : "../../../Samples/peoteView", fps : 60, name : "peote_view", orientation : "", packageName : "de.peote.view", version : "0.1.1", windows : [{ antialiasing : 0, background : 16777215, borderless : false, depthBuffer : false, display : 0, fullscreen : false, hardware : true, height : 0, parameters : "{}", resizable : true, stencilBuffer : false, title : "peote_view", vsync : true, width : 0, x : null, y : null}]};
+	ApplicationMain.config = { build : "56", company : "Sylvio Sell - maitag", file : "../../../Samples/peoteView", fps : 60, name : "peote_view", orientation : "", packageName : "de.peote.view", version : "0.1.1", windows : [{ antialiasing : 0, background : 16777215, borderless : false, depthBuffer : false, display : 0, fullscreen : false, hardware : true, height : 0, parameters : "{}", resizable : true, stencilBuffer : false, title : "peote_view", vsync : true, width : 0, x : null, y : null}]};
 };
 ApplicationMain.start = function() {
 	var result = ApplicationMain.app.exec();
@@ -117,8 +117,8 @@ _$List_ListIterator.prototype = {
 	}
 	,__class__: _$List_ListIterator
 };
-var DType = $hx_exports.DType = function() { };
-DType.__name__ = true;
+var DisplaylistType = $hx_exports.DisplaylistType = function() { };
+DisplaylistType.__name__ = true;
 var lime_app_IModule = function() { };
 lime_app_IModule.__name__ = true;
 lime_app_IModule.prototype = {
@@ -196,6 +196,8 @@ lime_app_Module.prototype = {
 	,onWindowCreate: function(window) {
 	}
 	,onWindowDeactivate: function(window) {
+	}
+	,onWindowDropFile: function(window,file) {
 	}
 	,onWindowEnter: function(window) {
 	}
@@ -299,94 +301,99 @@ lime_app_Application.prototype = $extend(lime_app_Module.prototype,{
 				f3(a13);
 			};
 		})($bind(this,this.onWindowDeactivate),window));
-		window.onEnter.add((function(f4,a14) {
-			return function() {
-				f4(a14);
+		window.onDropFile.add((function(f4,a14) {
+			return function(a2) {
+				f4(a14,a2);
 			};
-		})($bind(this,this.onWindowEnter),window));
-		window.onFocusIn.add((function(f5,a15) {
+		})($bind(this,this.onWindowDropFile),window));
+		window.onEnter.add((function(f5,a15) {
 			return function() {
 				f5(a15);
 			};
-		})($bind(this,this.onWindowFocusIn),window));
-		window.onFocusOut.add((function(f6,a16) {
+		})($bind(this,this.onWindowEnter),window));
+		window.onFocusIn.add((function(f6,a16) {
 			return function() {
 				f6(a16);
 			};
-		})($bind(this,this.onWindowFocusOut),window));
-		window.onFullscreen.add((function(f7,a17) {
+		})($bind(this,this.onWindowFocusIn),window));
+		window.onFocusOut.add((function(f7,a17) {
 			return function() {
 				f7(a17);
 			};
+		})($bind(this,this.onWindowFocusOut),window));
+		window.onFullscreen.add((function(f8,a18) {
+			return function() {
+				f8(a18);
+			};
 		})($bind(this,this.onWindowFullscreen),window));
-		window.onKeyDown.add((function(f8,a18) {
-			return function(a2,a3) {
-				f8(a18,a2,a3);
+		window.onKeyDown.add((function(f9,a19) {
+			return function(a21,a3) {
+				f9(a19,a21,a3);
 			};
 		})($bind(this,this.onKeyDown),window));
-		window.onKeyUp.add((function(f9,a19) {
-			return function(a21,a31) {
-				f9(a19,a21,a31);
+		window.onKeyUp.add((function(f10,a110) {
+			return function(a22,a31) {
+				f10(a110,a22,a31);
 			};
 		})($bind(this,this.onKeyUp),window));
-		window.onLeave.add((function(f10,a110) {
-			return function() {
-				f10(a110);
-			};
-		})($bind(this,this.onWindowLeave),window));
-		window.onMinimize.add((function(f11,a111) {
+		window.onLeave.add((function(f11,a111) {
 			return function() {
 				f11(a111);
 			};
+		})($bind(this,this.onWindowLeave),window));
+		window.onMinimize.add((function(f12,a112) {
+			return function() {
+				f12(a112);
+			};
 		})($bind(this,this.onWindowMinimize),window));
-		window.onMouseDown.add((function(f12,a112) {
-			return function(x,y,a22) {
-				f12(a112,x,y,a22);
+		window.onMouseDown.add((function(f13,a113) {
+			return function(x,y,a23) {
+				f13(a113,x,y,a23);
 			};
 		})($bind(this,this.onMouseDown),window));
-		window.onMouseMove.add((function(f13,a113) {
+		window.onMouseMove.add((function(f14,a114) {
 			return function(x1,y1) {
-				f13(a113,x1,y1);
+				f14(a114,x1,y1);
 			};
 		})($bind(this,this.onMouseMove),window));
-		window.onMouseMoveRelative.add((function(f14,a114) {
+		window.onMouseMoveRelative.add((function(f15,a115) {
 			return function(x2,y2) {
-				f14(a114,x2,y2);
+				f15(a115,x2,y2);
 			};
 		})($bind(this,this.onMouseMoveRelative),window));
-		window.onMouseUp.add((function(f15,a115) {
-			return function(x3,y3,a23) {
-				f15(a115,x3,y3,a23);
+		window.onMouseUp.add((function(f16,a116) {
+			return function(x3,y3,a24) {
+				f16(a116,x3,y3,a24);
 			};
 		})($bind(this,this.onMouseUp),window));
-		window.onMouseWheel.add((function(f16,a116) {
-			return function(a24,a32) {
-				f16(a116,a24,a32);
+		window.onMouseWheel.add((function(f17,a117) {
+			return function(a25,a32) {
+				f17(a117,a25,a32);
 			};
 		})($bind(this,this.onMouseWheel),window));
-		window.onMove.add((function(f17,a117) {
+		window.onMove.add((function(f18,a118) {
 			return function(x4,y4) {
-				f17(a117,x4,y4);
+				f18(a118,x4,y4);
 			};
 		})($bind(this,this.onWindowMove),window));
-		window.onResize.add((function(f18,a118) {
-			return function(a25,a33) {
-				f18(a118,a25,a33);
+		window.onResize.add((function(f19,a119) {
+			return function(a26,a33) {
+				f19(a119,a26,a33);
 			};
 		})($bind(this,this.onWindowResize),window));
-		window.onRestore.add((function(f19,a119) {
+		window.onRestore.add((function(f20,a120) {
 			return function() {
-				f19(a119);
+				f20(a120);
 			};
 		})($bind(this,this.onWindowRestore),window));
-		window.onTextEdit.add((function(f20,a120) {
-			return function(a26,a34,a4) {
-				f20(a120,a26,a34,a4);
+		window.onTextEdit.add((function(f21,a121) {
+			return function(a27,a34,a4) {
+				f21(a121,a27,a34,a4);
 			};
 		})($bind(this,this.onTextEdit),window));
-		window.onTextInput.add((function(f21,a121) {
-			return function(a27) {
-				f21(a121,a27);
+		window.onTextInput.add((function(f22,a122) {
+			return function(a28) {
+				f22(a122,a28);
 			};
 		})($bind(this,this.onTextInput),window));
 		if(window.renderer == null) {
@@ -701,6 +708,15 @@ lime_app_Application.prototype = $extend(lime_app_Module.prototype,{
 			module.onWindowDeactivate(window);
 		}
 	}
+	,onWindowDropFile: function(window,file) {
+		var _g = 0;
+		var _g1 = this.modules;
+		while(_g < _g1.length) {
+			var module = _g1[_g];
+			++_g;
+			module.onWindowDropFile(window,file);
+		}
+	}
 	,onWindowEnter: function(window) {
 		var _g = 0;
 		var _g1 = this.modules;
@@ -889,10 +905,8 @@ MainJS.__name__ = true;
 MainJS.getTime = function() {
 	return Math.floor((haxe_Timer.stamp() - MainJS.startTime) * 100) / 100;
 };
-MainJS.init = function(max_displaylists,max_programs) {
-	if(max_programs == null) max_programs = 100;
-	if(max_displaylists == null) max_displaylists = 10;
-	MainJS.peoteView = new de_peote_view_PeoteView(max_displaylists,max_programs);
+MainJS.init = function(param) {
+	MainJS.peoteView = new de_peote_view_PeoteView(param);
 	return MainJS.peoteView;
 };
 MainJS.__super__ = lime_app_Application;
@@ -944,6 +958,21 @@ MainJS.prototype = $extend(lime_app_Application.prototype,{
 		if(deltaY > 0) this.zoom++; else if(this.zoom > 1) this.zoom--;
 		this.xOffset = -this.width * (this.zoom - 1) / this.zoom * this.mouse_x / this.width | 0;
 		this.yOffset = -this.height * (this.zoom - 1) / this.zoom * this.mouse_y / this.height | 0;
+	}
+	,onKeyDown: function(window,keyCode,modifier) {
+		switch(keyCode) {
+		case 102:
+			var e = document.getElementById('content').getElementsByTagName('canvas')[0];
+			var noFullscreen = (!document.fullscreenElement && !document.mozFullScreenElement && !document.webkitFullscreenElement && !document.msFullscreenElement);
+			if(noFullscreen) {
+				if(e.requestFullScreen) e.requestFullScreen(); else if(e.msRequestFullScreen) e.msRequestFullScreen(); else if(e.mozRequestFullScreen) e.mozRequestFullScreen(); else if(e.webkitRequestFullScreen) e.webkitRequestFullScreen();
+			} else {
+				var d = document;
+				if(d.exitFullscreen) d.exitFullscreen(); else if(d.msExitFullscreen) d.msExitFullscreen(); else if(d.mozCancelFullScreen) d.mozCancelFullScreen(); else if(d.webkitExitFullscreen) d.webkitExitFullscreen();
+			}
+			break;
+		default:
+		}
 	}
 	,setOffsets: function() {
 		this.xOffset = -this.width * (this.zoom - 1) / this.zoom * this.mouse_x / this.width | 0;
@@ -1052,16 +1081,24 @@ de_peote_tools_Hole.__name__ = true;
 de_peote_tools_Hole.prototype = {
 	__class__: de_peote_tools_Hole
 };
-var de_peote_view_ActiveProgram = function(program,program_nr,segment_size,buf_start) {
+var de_peote_view_ActiveProgram = function(program,program_nr,programTextures,segment_size,buf_start) {
 	this.size = -2;
 	this.program = program;
 	this.program_nr = program_nr;
+	this.textures = programTextures;
 	this.buf_start = buf_start * segment_size;
 	this.element_holes = new de_peote_tools_Holes(segment_size);
 };
 de_peote_view_ActiveProgram.__name__ = true;
 de_peote_view_ActiveProgram.prototype = {
 	__class__: de_peote_view_ActiveProgram
+};
+var de_peote_view_ActiveTextures = function() {
+	this.texture = [];
+};
+de_peote_view_ActiveTextures.__name__ = true;
+de_peote_view_ActiveTextures.prototype = {
+	__class__: de_peote_view_ActiveTextures
 };
 var de_peote_view_Buffer = function(segment_size,max_segments) {
 	this.segment_size = segment_size;
@@ -1087,17 +1124,17 @@ de_peote_view_Buffer.prototype = {
 			HxOverrides.remove(this.activeProgram,e.act_program);
 		}
 	}
-	,addElement: function(e,program,program_nr,slot) {
+	,addElement: function(e,program,program_nr,programTextures,slot) {
 		if(slot == null) slot = 0;
 		var buf_pos = 0;
 		var act_program = null;
 		if(!this.activeProgramSlots.h.hasOwnProperty(program_nr)) this.activeProgramSlots.set(program_nr,[]);
 		if(slot == this.activeProgramSlots.h[program_nr].length) {
-			act_program = new de_peote_view_ActiveProgram(program,program_nr,this.segment_size,this.segment_holes.getHole() * de_peote_view_Buffer.VERTEX_COUNT);
+			act_program = new de_peote_view_ActiveProgram(program,program_nr,programTextures,this.segment_size,this.segment_holes.getHole() * de_peote_view_Buffer.VERTEX_COUNT);
 			this.activeProgramSlots.h[program_nr].push(act_program);
 			this.activeProgram.push(act_program);
 		} else act_program = this.activeProgramSlots.h[program_nr][slot];
-		if(act_program.element_holes.hole.length == 0) this.addElement(e,program,program_nr,slot + 1); else {
+		if(act_program.element_holes.hole.length == 0) this.addElement(e,program,program_nr,programTextures,slot + 1); else {
 			buf_pos = act_program.buf_start + act_program.element_holes.getHole() * de_peote_view_Buffer.VERTEX_COUNT;
 			act_program.start = act_program.buf_start + 1 + act_program.element_holes.first() * de_peote_view_Buffer.VERTEX_COUNT;
 			act_program.size = (act_program.element_holes.last() + 1 - act_program.element_holes.first()) * de_peote_view_Buffer.VERTEX_COUNT - 2;
@@ -1106,27 +1143,46 @@ de_peote_view_Buffer.prototype = {
 	}
 	,__class__: de_peote_view_Buffer
 };
-var de_peote_view_PeoteView = function(max_displaylists,max_programs) {
-	if(max_programs == null) max_programs = 100;
-	if(max_displaylists == null) max_displaylists = 10;
-	this.texturecache = new de_peote_view_texture_TextureCache(512,512,64);
-	this.programCache = new de_peote_view_ProgramCache(max_programs + 1);
-	this.startDisplaylist = null;
+var de_peote_view_PeoteView = function(param) {
+	this.framebuffer = null;
+	if(param.maxDisplaylists == null) param.maxDisplaylists = 1;
+	if(param.maxPrograms == null) param.maxPrograms = 1;
+	if(param.maxTextures == null) param.maxTextures = 1;
+	if(param.maxImages == null) param.maxImages = 1;
 	var this1;
-	this1 = new Array(max_displaylists);
-	this.displaylist = this1;
-	this.createBackgroundBuffer();
+	this1 = new Array(param.maxTextures);
+	this.textures = this1;
+	this.imageCache = new de_peote_view_texture_ImageCache(param.maxImages,this.textures);
+	this.programCache = new de_peote_view_ProgramCache(param.maxPrograms + 1,this.textures);
+	this.startDisplaylist = null;
 	var this2;
-	this2 = new Uint8Array(4);
-	this.picked = this2;
+	this2 = new Array(param.maxDisplaylists);
+	this.displaylist = this2;
+	this.createBackgroundBuffer();
+	var this3;
+	this3 = new Uint8Array(4);
+	this.picked = this3;
 };
 de_peote_view_PeoteView.__name__ = true;
 de_peote_view_PeoteView.prototype = {
-	setDisplaylist: function(param) {
+	setTexture: function(param) {
+		if(this.textures[param.texture] == null) {
+			var val = new de_peote_view_texture_Texture(param);
+			this.textures[param.texture] = val;
+		} else null;
+	}
+	,setDisplaylist: function(param) {
 		var d = this.displaylist[param.displaylist];
 		if(d == null) {
 			if(param.type == null) param.type = 0;
-			if((param.type & 1) != 0) d = new de_peote_view_displaylist_Displaylist_$de_$peote_$view_$element_$ElementAnim_$de_$peote_$view_$element_$ElementAnimBuffer(param,this.programCache,this.texturecache); else d = new de_peote_view_displaylist_Displaylist_$de_$peote_$view_$element_$ElementSimple_$de_$peote_$view_$element_$ElementSimpleBuffer(param,this.programCache,this.texturecache);
+			if((param.type & 128) != 0 && this.framebuffer == null) {
+				this.fb_texture = de_peote_view_texture_Texture.createEmptyTexture(1,1);
+				this.framebuffer = lime_graphics_opengl_GL.context.createFramebuffer();
+				lime_graphics_opengl_GL.context.bindFramebuffer(36160,this.framebuffer);
+				lime_graphics_opengl_GL.context.framebufferTexture2D(36160,36064,3553,this.fb_texture,0);
+				lime_graphics_opengl_GL.context.bindFramebuffer(36160,null);
+			}
+			if((param.type & 1) != 0) d = new de_peote_view_displaylist_Displaylist_$de_$peote_$view_$element_$ElementAnim_$de_$peote_$view_$element_$ElementAnimBuffer(param,this.programCache,this.imageCache); else d = new de_peote_view_displaylist_Displaylist_$de_$peote_$view_$element_$ElementSimple_$de_$peote_$view_$element_$ElementSimpleBuffer(param,this.programCache,this.imageCache);
 			this.displaylist[param.displaylist] = d;
 			if(param.enable != false) this.insertSortDisplaylist(d); else d.enable = false;
 		} else if(param.enable != null && param.enable != d.enable) {
@@ -1183,21 +1239,13 @@ de_peote_view_PeoteView.prototype = {
 	,getDisplaylist: function(param) {
 		return this.displaylist[param.displaylist != null?param.displaylist:de_peote_view_PeoteView.elementDefaults.displaylist];
 	}
-	,setProgram: function(program_nr,fsUrl,vsUrl) {
-		if(vsUrl == null) vsUrl = "";
-		if(fsUrl == null) fsUrl = "";
-		this.programCache.loadShaderSrc(program_nr,fsUrl,vsUrl);
+	,setProgram: function(param) {
+		if(param.fshadersrc == null && param.fshader != null) param.fshadersrc = this.programCache.loadShader(param.fshader);
+		if(param.vshadersrc == null && param.vshader != null) param.vshadersrc = this.programCache.loadShader(param.vshader);
+		this.programCache.setProgram(param);
 	}
-	,setProgramSrc: function(program_nr,fsSrc,vsSrc) {
-		if(vsSrc == null) vsSrc = "";
-		if(fsSrc == null) fsSrc = "";
-		this.programCache.setShaderSrc(program_nr,fsSrc,vsSrc);
-	}
-	,setImage: function(image_nr,imageUrl,w,h) {
-		if(h == null) h = 0;
-		if(w == null) w = 0;
-		if(imageUrl == null) imageUrl = "";
-		this.texturecache.setImage(image_nr,imageUrl,w,h);
+	,setImage: function(param) {
+		this.imageCache.setImage(param);
 	}
 	,setElement: function(param) {
 		if(param.element != null) this.displaylist[param.displaylist != null?param.displaylist:de_peote_view_PeoteView.elementDefaults.displaylist].setElement(param); else null;
@@ -1250,7 +1298,8 @@ de_peote_view_PeoteView.prototype = {
 			sy = Std["int"](Math.max(0,Math.min(height,sy)));
 			sh = Std["int"](Math.max(0,Math.min(height - sy,sh)));
 			lime_graphics_opengl_GL.context.scissor(sx,height - sh - sy,sw,sh);
-			if(this.dl.blend == 0) {
+			if((this.dl.type & 4) != 0) {
+				if(this.dl != this.startDisplaylist) lime_graphics_opengl_GL.context.clear(256);
 				lime_graphics_opengl_GL.context.enable(2929);
 				lime_graphics_opengl_GL.context.depthFunc(515);
 			} else lime_graphics_opengl_GL.context.disable(2929);
@@ -1258,9 +1307,6 @@ de_peote_view_PeoteView.prototype = {
 				lime_graphics_opengl_GL.context.enable(3042);
 				lime_graphics_opengl_GL.context.blendFunc(770,771);
 			} else lime_graphics_opengl_GL.context.disable(3042);
-			lime_graphics_opengl_GL.context.activeTexture(33984);
-			lime_graphics_opengl_GL.context.bindTexture(3553,this.texturecache.texture);
-			if(this.dl != this.startDisplaylist && this.dl.z != this.dl.prev.z) lime_graphics_opengl_GL.context.clear(256);
 			if(this.dl.renderBackground) {
 				lime_graphics_opengl_GL.context.bindBuffer(34962,this.background_buffer);
 				lime_graphics_opengl_GL.context.enableVertexAttribArray(this.background_aPosition);
@@ -1278,12 +1324,19 @@ de_peote_view_PeoteView.prototype = {
 				var i = _g++;
 				this.ap = this.dl.buffer.activeProgram[i];
 				lime_graphics_opengl_GL.context.useProgram(this.ap.program.glProgram);
-				lime_graphics_opengl_GL.context.uniform1i(this.ap.program.uniforms[2],0);
-				lime_graphics_opengl_GL.context.uniform2f(this.ap.program.uniforms[3],mouseX / width * 2 - 1,mouseY / height * 2 - 1);
-				lime_graphics_opengl_GL.context.uniform2f(this.ap.program.uniforms[4],width,height);
-				lime_graphics_opengl_GL.context.uniform1f(this.ap.program.uniforms[5],time);
-				lime_graphics_opengl_GL.context.uniform1f(this.ap.program.uniforms[6],this.dl.zoom * zoom);
-				lime_graphics_opengl_GL.context.uniform2f(this.ap.program.uniforms[7],this.dl.x + this.dl.xOffset + xOffset,this.dl.y + this.dl.yOffset + yOffset);
+				var len1 = this.ap.textures.texture.length;
+				var _g1 = 0;
+				while(_g1 < len1) {
+					var j = _g1++;
+					lime_graphics_opengl_GL.context.activeTexture(de_peote_view_ActiveTextures.slot[j]);
+					lime_graphics_opengl_GL.context.bindTexture(3553,this.ap.textures.texture[j].texture);
+					lime_graphics_opengl_GL.context.uniform1i(this.ap.program.uniforms[de_peote_view_Program.uTEXTURE[j]],j);
+				}
+				lime_graphics_opengl_GL.context.uniform2f(this.ap.program.uniforms[0],mouseX / width * 2 - 1,mouseY / height * 2 - 1);
+				lime_graphics_opengl_GL.context.uniform2f(this.ap.program.uniforms[1],width,height);
+				lime_graphics_opengl_GL.context.uniform1f(this.ap.program.uniforms[2],time);
+				lime_graphics_opengl_GL.context.uniform1f(this.ap.program.uniforms[3],this.dl.zoom * zoom);
+				lime_graphics_opengl_GL.context.uniform2f(this.ap.program.uniforms[4],this.dl.x + this.dl.xOffset + xOffset,this.dl.y + this.dl.yOffset + yOffset);
 				lime_graphics_opengl_GL.context.drawArrays(5,this.ap.start,this.ap.size);
 				lime_graphics_opengl_GL.context.useProgram(null);
 			}
@@ -1358,8 +1411,6 @@ de_peote_view_PeoteView.prototype = {
 		lime_graphics_opengl_GL.context.enable(2929);
 		lime_graphics_opengl_GL.context.depthFunc(515);
 		lime_graphics_opengl_GL.context.disable(3042);
-		lime_graphics_opengl_GL.context.activeTexture(33984);
-		lime_graphics_opengl_GL.context.bindTexture(3553,this.texturecache.texture);
 		lime_graphics_opengl_GL.context.clear(256);
 		lime_graphics_opengl_GL.context.bindBuffer(34962,dl.elemBuff.glBuff);
 		dl.elemBuff.setVertexAttributes();
@@ -1369,12 +1420,19 @@ de_peote_view_PeoteView.prototype = {
 			var i = _g++;
 			this.ap = dl.buffer.activeProgram[i];
 			lime_graphics_opengl_GL.context.useProgram(this.ap.program.glProgram);
-			lime_graphics_opengl_GL.context.uniform1i(this.ap.program.uniforms[2],0);
-			lime_graphics_opengl_GL.context.uniform2f(this.ap.program.uniforms[3],mouseX / width * 2 - 1,mouseY / height * 2 - 1);
-			lime_graphics_opengl_GL.context.uniform2f(this.ap.program.uniforms[4],width,height);
-			lime_graphics_opengl_GL.context.uniform1f(this.ap.program.uniforms[5],time);
-			lime_graphics_opengl_GL.context.uniform1f(this.ap.program.uniforms[6],dl.zoom * zoom);
-			lime_graphics_opengl_GL.context.uniform2f(this.ap.program.uniforms[7],dl.x + dl.xOffset + xOffset,dl.y + dl.yOffset + yOffset);
+			var len1 = this.ap.textures.texture.length;
+			var _g1 = 0;
+			while(_g1 < len1) {
+				var j = _g1++;
+				lime_graphics_opengl_GL.context.activeTexture(de_peote_view_ActiveTextures.slot[j]);
+				lime_graphics_opengl_GL.context.bindTexture(3553,this.ap.textures.texture[j].texture);
+				lime_graphics_opengl_GL.context.uniform1i(this.ap.program.uniforms[de_peote_view_Program.uTEXTURE[j]],j);
+			}
+			lime_graphics_opengl_GL.context.uniform2f(this.ap.program.uniforms[0],mouseX / width * 2 - 1,mouseY / height * 2 - 1);
+			lime_graphics_opengl_GL.context.uniform2f(this.ap.program.uniforms[1],width,height);
+			lime_graphics_opengl_GL.context.uniform1f(this.ap.program.uniforms[2],time);
+			lime_graphics_opengl_GL.context.uniform1f(this.ap.program.uniforms[3],dl.zoom * zoom);
+			lime_graphics_opengl_GL.context.uniform2f(this.ap.program.uniforms[4],dl.x + dl.xOffset + xOffset,dl.y + dl.yOffset + yOffset);
 			lime_graphics_opengl_GL.context.drawArrays(5,this.ap.start,this.ap.size);
 		}
 		dl.elemBuff.disableVertexAttributes();
@@ -1396,7 +1454,7 @@ var de_peote_view_Program = function(defaultProgram) {
 };
 de_peote_view_Program.__name__ = true;
 de_peote_view_Program.prototype = {
-	parseType: function(type,s) {
+	parseType: function(type,textureUnits,s) {
 		s = de_peote_view_Program.rComment.replace(s,"");
 		s = de_peote_view_Program.rNewline.replace(s,"");
 		s = de_peote_view_Program.rSpaces.replace(s,"");
@@ -1428,13 +1486,30 @@ de_peote_view_Program.prototype = {
 			s = de_peote_view_Program.rPICKINGstart.replace(s,"#end_PICKING$1");
 			s = de_peote_view_Program.rPICKINGend.replace(s,"");
 		}
-		s = de_peote_view_Program.rMAX_TEXTURE_SIZE.replace(s,de_peote_view_texture_TextureCache.max_texture_size + ".0");
+		var slots = 0;
+		if(textureUnits != null) slots = textureUnits.texture.length;
+		if(slots > 0) {
+			s = de_peote_view_Program.rMAX_TEXTURE0.replace(s,"vec2(" + textureUnits.texture[0].max_texture_width + ".0," + textureUnits.texture[0].max_texture_height + ".0)");
+			s = de_peote_view_Program.rTEXTURE0start.replace(s,"#end_TEXTURE0");
+			s = de_peote_view_Program.rTEXTURE0end.replace(s,"$1");
+		} else {
+			s = de_peote_view_Program.rTEXTURE0start.replace(s,"#end_TEXTURE0$1");
+			s = de_peote_view_Program.rTEXTURE0end.replace(s,"");
+		}
+		if(slots > 1) {
+			s = de_peote_view_Program.rMAX_TEXTURE1.replace(s,"vec2(" + textureUnits.texture[1].max_texture_width + ".0," + textureUnits.texture[1].max_texture_height + ".0)");
+			s = de_peote_view_Program.rTEXTURE1start.replace(s,"#end_TEXTURE1");
+			s = de_peote_view_Program.rTEXTURE1end.replace(s,"$1");
+		} else {
+			s = de_peote_view_Program.rTEXTURE1start.replace(s,"#end_TEXTURE1$1");
+			s = de_peote_view_Program.rTEXTURE1end.replace(s,"");
+		}
 		return s;
 	}
-	,compile: function(elemBuff,type,fragmentShaderSrc,vertexShaderSrc,onerror) {
-		vertexShaderSrc = this.parseType(type,vertexShaderSrc);
+	,compile: function(elemBuff,type,textureUnits,fragmentShaderSrc,vertexShaderSrc,onerror) {
+		vertexShaderSrc = this.parseType(type,textureUnits,vertexShaderSrc);
 		vertexShaderSrc = "precision mediump float;" + vertexShaderSrc;
-		fragmentShaderSrc = this.parseType(type,fragmentShaderSrc);
+		fragmentShaderSrc = this.parseType(type,textureUnits,fragmentShaderSrc);
 		fragmentShaderSrc = "precision mediump float;" + fragmentShaderSrc;
 		var r = new EReg(";","g");
 		var fs = lime_graphics_opengl_GL.context.createShader(35632);
@@ -1449,15 +1524,16 @@ de_peote_view_Program.prototype = {
 			lime_graphics_opengl_GL.context.attachShader(this.glProgram,fs);
 			lime_graphics_opengl_GL.context.deleteShader(vs);
 			lime_graphics_opengl_GL.context.deleteShader(fs);
+			lime_graphics_opengl_GL.context.bindAttribLocation(this.glProgram,1,"aTexCoord");
 			lime_graphics_opengl_GL.context.linkProgram(this.glProgram);
 			if(lime_graphics_opengl_GL.context.getProgramParameter(this.glProgram,35714) == 0) onerror(lime_graphics_opengl_GL.context.getProgramInfoLog(this.glProgram) + "VALIDATE_STATUS: " + lime_graphics_opengl_GL.context.getProgramParameter(this.glProgram,35715) + "ERROR: " + lime_graphics_opengl_GL.context.getError()); else {
 				var name;
 				if(elemBuff != null) {
 					if(elemBuff.attr == null) {
-						var length = lime_graphics_opengl_GL.context.getProgramParameter(this.glProgram,35721);
 						var this1;
-						this1 = new Array(length);
+						this1 = new Array(12);
 						elemBuff.attr = this1;
+						elemBuff.attr[1] = 1;
 						var _g1 = 0;
 						var _g = lime_graphics_opengl_GL.context.getProgramParameter(this.glProgram,35721);
 						while(_g1 < _g) {
@@ -1468,45 +1544,41 @@ de_peote_view_Program.prototype = {
 								var val = lime_graphics_opengl_GL.context.getAttribLocation(this.glProgram,name);
 								elemBuff.attr[0] = val;
 								break;
-							case "aTexCoord":
-								var val1 = lime_graphics_opengl_GL.context.getAttribLocation(this.glProgram,name);
-								elemBuff.attr[1] = val1;
-								break;
 							case "aZindex":
-								var val2 = lime_graphics_opengl_GL.context.getAttribLocation(this.glProgram,name);
-								elemBuff.attr[2] = val2;
+								var val1 = lime_graphics_opengl_GL.context.getAttribLocation(this.glProgram,name);
+								elemBuff.attr[2] = val1;
 								break;
 							case "aRGBA":
-								var val3 = lime_graphics_opengl_GL.context.getAttribLocation(this.glProgram,name);
-								elemBuff.attr[3] = val3;
+								var val2 = lime_graphics_opengl_GL.context.getAttribLocation(this.glProgram,name);
+								elemBuff.attr[3] = val2;
 								break;
 							case "aRGBA_END":
-								var val4 = lime_graphics_opengl_GL.context.getAttribLocation(this.glProgram,name);
-								elemBuff.attr[4] = val4;
+								var val3 = lime_graphics_opengl_GL.context.getAttribLocation(this.glProgram,name);
+								elemBuff.attr[4] = val3;
 								break;
 							case "aRotation":
-								var val5 = lime_graphics_opengl_GL.context.getAttribLocation(this.glProgram,name);
-								elemBuff.attr[5] = val5;
+								var val4 = lime_graphics_opengl_GL.context.getAttribLocation(this.glProgram,name);
+								elemBuff.attr[5] = val4;
 								break;
 							case "aPivot":
-								var val6 = lime_graphics_opengl_GL.context.getAttribLocation(this.glProgram,name);
-								elemBuff.attr[6] = val6;
+								var val5 = lime_graphics_opengl_GL.context.getAttribLocation(this.glProgram,name);
+								elemBuff.attr[6] = val5;
 								break;
 							case "aTime":
-								var val7 = lime_graphics_opengl_GL.context.getAttribLocation(this.glProgram,name);
-								elemBuff.attr[7] = val7;
+								var val6 = lime_graphics_opengl_GL.context.getAttribLocation(this.glProgram,name);
+								elemBuff.attr[7] = val6;
 								break;
 							case "aElement":
-								var val8 = lime_graphics_opengl_GL.context.getAttribLocation(this.glProgram,name);
-								elemBuff.attr[8] = val8;
+								var val7 = lime_graphics_opengl_GL.context.getAttribLocation(this.glProgram,name);
+								elemBuff.attr[8] = val7;
 								break;
 							}
 						}
 					}
 				}
-				var length1 = lime_graphics_opengl_GL.context.getProgramParameter(this.glProgram,35718);
+				var length = lime_graphics_opengl_GL.context.getProgramParameter(this.glProgram,35718);
 				var this2;
-				this2 = new Array(length1);
+				this2 = new Array(length);
 				this.uniforms = this2;
 				var _g11 = 0;
 				var _g2 = lime_graphics_opengl_GL.context.getProgramParameter(this.glProgram,35718);
@@ -1514,37 +1586,57 @@ de_peote_view_Program.prototype = {
 					var i1 = _g11++;
 					name = lime_graphics_opengl_GL.context.getActiveUniform(this.glProgram,i1).name;
 					switch(name) {
-					case "uModelViewMatrix":
-						var val9 = lime_graphics_opengl_GL.context.getUniformLocation(this.glProgram,name);
-						this.uniforms[0] = val9;
-						break;
-					case "uProjectionMatrix":
-						var val10 = lime_graphics_opengl_GL.context.getUniformLocation(this.glProgram,name);
-						this.uniforms[1] = val10;
-						break;
-					case "uImage":
-						var val11 = lime_graphics_opengl_GL.context.getUniformLocation(this.glProgram,name);
-						this.uniforms[2] = val11;
-						break;
 					case "uMouse":
-						var val12 = lime_graphics_opengl_GL.context.getUniformLocation(this.glProgram,name);
-						this.uniforms[3] = val12;
+						var val8 = lime_graphics_opengl_GL.context.getUniformLocation(this.glProgram,name);
+						this.uniforms[0] = val8;
 						break;
 					case "uResolution":
-						var val13 = lime_graphics_opengl_GL.context.getUniformLocation(this.glProgram,name);
-						this.uniforms[4] = val13;
+						var val9 = lime_graphics_opengl_GL.context.getUniformLocation(this.glProgram,name);
+						this.uniforms[1] = val9;
 						break;
 					case "uTime":
-						var val14 = lime_graphics_opengl_GL.context.getUniformLocation(this.glProgram,name);
-						this.uniforms[5] = val14;
+						var val10 = lime_graphics_opengl_GL.context.getUniformLocation(this.glProgram,name);
+						this.uniforms[2] = val10;
 						break;
 					case "uZoom":
-						var val15 = lime_graphics_opengl_GL.context.getUniformLocation(this.glProgram,name);
-						this.uniforms[6] = val15;
+						var val11 = lime_graphics_opengl_GL.context.getUniformLocation(this.glProgram,name);
+						this.uniforms[3] = val11;
 						break;
 					case "uDelta":
+						var val12 = lime_graphics_opengl_GL.context.getUniformLocation(this.glProgram,name);
+						this.uniforms[4] = val12;
+						break;
+					case "uTexture0":
+						var val13 = lime_graphics_opengl_GL.context.getUniformLocation(this.glProgram,name);
+						this.uniforms[de_peote_view_Program.uTEXTURE[0]] = val13;
+						break;
+					case "uTexture1":
+						var val14 = lime_graphics_opengl_GL.context.getUniformLocation(this.glProgram,name);
+						this.uniforms[de_peote_view_Program.uTEXTURE[1]] = val14;
+						break;
+					case "uTexture2":
+						var val15 = lime_graphics_opengl_GL.context.getUniformLocation(this.glProgram,name);
+						this.uniforms[de_peote_view_Program.uTEXTURE[2]] = val15;
+						break;
+					case "uTexture3":
 						var val16 = lime_graphics_opengl_GL.context.getUniformLocation(this.glProgram,name);
-						this.uniforms[7] = val16;
+						this.uniforms[de_peote_view_Program.uTEXTURE[3]] = val16;
+						break;
+					case "uTexture4":
+						var val17 = lime_graphics_opengl_GL.context.getUniformLocation(this.glProgram,name);
+						this.uniforms[de_peote_view_Program.uTEXTURE[4]] = val17;
+						break;
+					case "uTexture5":
+						var val18 = lime_graphics_opengl_GL.context.getUniformLocation(this.glProgram,name);
+						this.uniforms[de_peote_view_Program.uTEXTURE[5]] = val18;
+						break;
+					case "uTexture6":
+						var val19 = lime_graphics_opengl_GL.context.getUniformLocation(this.glProgram,name);
+						this.uniforms[de_peote_view_Program.uTEXTURE[6]] = val19;
+						break;
+					case "uTexture7":
+						var val20 = lime_graphics_opengl_GL.context.getUniformLocation(this.glProgram,name);
+						this.uniforms[de_peote_view_Program.uTEXTURE[7]] = val20;
 						break;
 					}
 				}
@@ -1553,8 +1645,9 @@ de_peote_view_Program.prototype = {
 	}
 	,__class__: de_peote_view_Program
 };
-var de_peote_view_ProgramCache = function(max_programs) {
+var de_peote_view_ProgramCache = function(max_programs,textures) {
 	this.attr = null;
+	this.textures = textures;
 	var this1;
 	this1 = new Array(max_programs);
 	this.fragmentShaderSrc = this1;
@@ -1564,11 +1657,16 @@ var de_peote_view_ProgramCache = function(max_programs) {
 	var this3;
 	this3 = new Array(max_programs);
 	this.program = this3;
+	var this4;
+	this4 = new Array(max_programs);
+	this.programTextures = this4;
 	var _g = 0;
 	while(_g < max_programs) {
 		var i = _g++;
 		var val = new haxe_ds_IntMap();
 		this.program[i] = val;
+		var val1 = new de_peote_view_ActiveTextures();
+		this.programTextures[i] = val1;
 	}
 	this.defaultProgram = new haxe_ds_IntMap();
 	this.attr = new haxe_ds_IntMap();
@@ -1581,7 +1679,7 @@ de_peote_view_ProgramCache.prototype = {
 	,addDisplaylist: function(type,elemBuff) {
 		if(!this.defaultProgram.h.hasOwnProperty(type)) {
 			var p = new de_peote_view_Program();
-			p.compile(elemBuff,type,elemBuff.getDefaultFragmentShaderSrc(),elemBuff.getDefaultVertexShaderSrc(),$bind(this,this.onerror));
+			p.compile(elemBuff,type,null,elemBuff.getDefaultFragmentShaderSrc(),elemBuff.getDefaultVertexShaderSrc(),$bind(this,this.onerror));
 			this.defaultProgram.h[type] = p;
 			this.attr.h[type] = elemBuff.attr;
 		} else elemBuff.attr = this.attr.h[type];
@@ -1591,53 +1689,61 @@ de_peote_view_ProgramCache.prototype = {
 		if(p == null) {
 			var fs = this.fragmentShaderSrc[nr];
 			var vs = this.vertexShaderSrc[nr];
-			if(fs != null || vs != null) {
+			var textureUnits = this.programTextures[nr];
+			if(fs != null || vs != null || textureUnits.texture.length > 0) {
 				p = new de_peote_view_Program();
 				if(fs == null) fs = elemBuff.getDefaultFragmentShaderSrc();
 				if(vs == null) vs = elemBuff.getDefaultVertexShaderSrc();
-				p.compile(elemBuff,type,fs,vs,$bind(this,this.onerror));
+				p.compile(elemBuff,type,textureUnits,fs,vs,$bind(this,this.onerror));
 			} else p = new de_peote_view_Program(this.defaultProgram.h[type]);
 			this.program[nr].h[type] = p;
 		}
 		return p;
 	}
-	,setShaderSrc: function(nr,fs,vs) {
-		if(fs != "" || vs != "") {
-			var pmap = this.program[nr];
+	,setProgram: function(param) {
+		var textureUnits = this.programTextures[param.program];
+		if(param.texture != null || param.textures != null) {
+			if(param.textures == null) param.textures = [];
+			if(param.texture != null) param.textures.push(param.texture);
+			var len = Math.floor(Math.max(param.textures.length,textureUnits.texture.length));
+			var _g = 0;
+			while(_g < len) {
+				var i = _g++;
+				if(i >= param.textures.length) textureUnits.texture.pop(); else {
+					var t = this.textures[param.textures[i]];
+					if(t != null) {
+						if(i >= textureUnits.texture.length) textureUnits.texture.push(t); else textureUnits.texture[i] = t;
+					} else null;
+				}
+			}
+		}
+		if(param.fshadersrc != null || param.vshadersrc != null) {
+			var pmap = this.program[param.program];
 			var default_fs;
 			var default_vs;
 			var $it0 = pmap.keys();
 			while( $it0.hasNext() ) {
 				var type = $it0.next();
 				if((type & 1) != 0) {
-					default_fs = "\tvarying vec2 vTexCoord;\r\n\t\t#if_RGBA\r\n\t\tvarying vec4 vRGBA;\r\n\t\t#else_RGBA\r\n\t\t\t#if_PICKING\r\n\t\t\tvarying vec4 vRGBA;\r\n\t\t\t#end_PICKING\r\n\t\t#end_RGBA\r\n\t\t\r\n\t\tuniform sampler2D uImage;\r\n\t\t\r\n\t\t#if_PICKING\r\n\t\tuniform vec2 uResolution;\r\n\t\t#end_PICKING\r\n\t\t\r\n\t\tvoid main(void)\r\n\t\t{\r\n\t\t\tvec4 texel = texture2D(uImage, vTexCoord / #MAX_TEXTURE_SIZE);\r\n\t\t\tif(texel.a < 0.5) discard; // TODO (z-order/blend mode!!!)\r\n\t\t\t#if_PICKING\r\n\t\t\tif (uResolution.x == 1.0) { \r\n\t\t\t\tgl_FragColor = vRGBA; //vec4(1.0, 1.0, 1.0, 1.0);\r\n\t\t\t}\r\n\t\t\telse {\r\n\t\t\t\t#if_RGBA\r\n\t\t\t\tgl_FragColor = texel * vRGBA;\r\n\t\t\t\t#else_RGBA\r\n\t\t\t\tgl_FragColor = texel;\r\n\t\t\t\t#end_RGBA\t\t\t\t\r\n\t\t\t}\r\n\t\t\t#else_PICKING\r\n\t\t\t\t#if_RGBA\r\n\t\t\t\tgl_FragColor = texel * vRGBA;\r\n\t\t\t\t#else_RGBA\r\n\t\t\t\tgl_FragColor = texel;\r\n\t\t\t\t#end_RGBA\r\n\t\t\t#end_PICKING\r\n\t\t}\r\n\t";
-					default_vs = "\tattribute vec4 aPosition;\r\n\t\t\r\n\t\t#if_ZINDEX\r\n\t\tattribute float aZindex;\r\n\t\t#end_ZINDEX\r\n\t\t\r\n\t\t#if_RGBA\r\n\t\tattribute vec4 aRGBA;\r\n\t\tattribute vec4 aRGBA_END;\r\n\t\tvarying vec4 vRGBA;\r\n\t\t#end_RGBA\r\n\t\t\r\n\t\t#if_ROTATION\r\n\t\tattribute vec2 aRotation;\r\n\t\tattribute vec4 aPivot;\r\n\t\t#end_ROTATION\r\n\t\t\r\n\t\t#if_PICKING\r\n\t\tattribute vec4 aElement;\r\n\t\t\t#if_RGBA\r\n\t\t\t#else_RGBA\r\n\t\t\tvarying vec4 vRGBA;\r\n\t\t\t#end_RGBA\r\n\t\t#end_PICKING\r\n\t\t\t\r\n\t\tattribute vec2 aTime;\r\n\t\t\r\n\t\tattribute vec2 aTexCoord;\r\n\t\t\r\n\t\tvarying vec2 vTexCoord;\r\n\t\t\r\n\t\tuniform float uTime;\r\n\t\tuniform float uZoom;\r\n\t\tuniform vec2 uResolution;\r\n\t\tuniform vec2 uDelta;\r\n\t\t\r\n\t\tvoid main(void) {\r\n\t\t\t#if_RGBA\r\n\t\t\tvRGBA = aRGBA.wzyx + (aRGBA_END.wzyx - aRGBA.wzyx) * max( 0.0, min( (uTime-aTime.x) / (aTime.y - aTime.x), 1.0));\t\r\n\t\t\t#end_RGBA\r\n\t\t\t\r\n\t\t\t#if_PICKING\r\n\t\t\tif (uResolution.x == 1.0) {\r\n\t\t\t\tvRGBA = aElement;\r\n\t\t\t}\r\n\t\t\t#end_PICKING\r\n\t\t\t\r\n\t\t\tvTexCoord = aTexCoord;\r\n\t\t\t\r\n\t\t\tvec2 VertexPosStart = vec2 ( aPosition ); //vec2 (aPosition.x, aPosition.y);\r\n\t\t\tvec2 VertexPosEnd   = vec2 ( aPosition.z, aPosition.w);\r\n\t\t\t\r\n\t\t\t#if_ROTATION\r\n\t\t\tfloat alpha = aRotation.x + (aRotation.y - aRotation.x)\t* max( 0.0, min( (uTime-aTime.x) / (aTime.y - aTime.x), 1.0));\r\n\t\t\t\t\t\t\t\t\r\n\t\t\tVertexPosStart = (VertexPosStart - vec2(aPivot))\r\n\t\t\t\t\t\t\t* mat2 (\r\n\t\t\t\t\t\t\t\tvec2(cos(alpha), -sin(alpha)),\r\n\t\t\t\t\t\t\t\tvec2(sin(alpha),  cos(alpha))\r\n\t\t\t\t\t\t\t) + vec2(aPivot);\r\n\t\t\t\r\n\t\t\tVertexPosEnd = (VertexPosEnd -  vec2(aPivot.z, aPivot.w))\r\n\t\t\t\t\t\t\t* mat2 (\r\n\t\t\t\t\t\t\t\tvec2(cos(alpha), -sin(alpha)),\r\n\t\t\t\t\t\t\t\tvec2(sin(alpha),  cos(alpha))\r\n\t\t\t\t\t\t\t) + vec2(aPivot.z, aPivot.w);\r\n\t\t\t#end_ROTATION\r\n\t\t\t\t\r\n\t\t\tfloat zoom = uZoom;\r\n\t\t\tfloat width = uResolution.x;\r\n\t\t\tfloat height = uResolution.y;\r\n\t\t\tfloat deltaX = floor(uDelta.x);\r\n\t\t\tfloat deltaY = floor(uDelta.y);\r\n\t\t\t\r\n\t\t\tfloat right = width-deltaX*zoom;\r\n\t\t\tfloat left = -deltaX*zoom;\r\n\t\t\tfloat bottom = height-deltaY*zoom;\r\n\t\t\tfloat top = -deltaY * zoom;\r\n\t\t\t\t\t\t\r\n\t\t\tgl_Position = mat4 (\r\n\t\t\t\tvec4(2.0 / (right - left)*zoom, 0.0, 0.0, 0.0),\r\n\t\t\t\tvec4(0.0, 2.0 / (top - bottom)*zoom, 0.0, 0.0),\r\n\t\t\t\tvec4(0.0, 0.0, -0.001, 0.0),\r\n\t\t\t\tvec4(-(right + left) / (right - left), -(top + bottom) / (top - bottom), 0.0, 1.0)\r\n\t\t\t)\r\n\t\t\t* vec4( VertexPosStart + floor( \r\n\t\t\t\t\t\t\t\t(VertexPosEnd - VertexPosStart)\r\n\t\t\t\t\t\t\t\t* max( 0.0, min( (uTime-aTime.x) / (aTime.y - aTime.x), 1.0))\r\n\t\t\t\t\t\t\t\t* zoom) / zoom ,\r\n\t\t\t\t#if_ZINDEX\r\n\t\t\t\taZindex\r\n\t\t\t\t#else_ZINDEX\r\n\t\t\t\t0.0\r\n\t\t\t\t#end_ZINDEX\r\n\t\t\t\t, 1.0\r\n\t\t\t)\r\n\t\t\t// rotate displaylist\r\n\t\t\t/** mat4 (\r\n\t\t\t\tvec4(cos(winkel), -sin(winkel), 0.0, 0.0),\r\n\t\t\t\tvec4(sin(winkel),  cos(winkel), 0.0, 0.0),\r\n\t\t\t\tvec4(        0.0,          1.0, 0.0, 0.0),\r\n\t\t\t\tvec4(        0.0,          0.0, 0.0, 1.0)\r\n\t\t\t)*/\r\n\t\t\t;\r\n\t\t}\r\n\t";
+					default_fs = "\tvarying vec2 vTexCoord;\r\n\t\t#if_RGBA\r\n\t\tvarying vec4 vRGBA;\r\n\t\t#else_RGBA\r\n\t\t\t#if_PICKING\r\n\t\t\tvarying vec4 vRGBA;\r\n\t\t\t#end_PICKING\r\n\t\t#end_RGBA\r\n\t\t\r\n\t\t#if_PICKING\r\n\t\tuniform vec2 uResolution;\r\n\t\t#end_PICKING\r\n\t\t\r\n\t\t\r\n\t\t#if_TEXTURE0\r\n\t\tuniform sampler2D uTexture0;\r\n\t\t#end_TEXTURE0\r\n\t\t\r\n\t\t#if_TEXTURE1\r\n\t\tuniform sampler2D uTexture1;\r\n\t\t#end_TEXTURE1\r\n\t\t\r\n\t\tvoid main(void)\r\n\t\t{\r\n\t\t\t#if_TEXTURE0\r\n\t\t\tvec4 texel = texture2D(uTexture0, vTexCoord / #MAX_TEXTURE0);\r\n\t\t\t#else_TEXTURE0\r\n\t\t\tvec4 texel = vec4(1.0, 1.0, 1.0, 1.0);\r\n\t\t\t#end_TEXTURE0\r\n\t\t\t\r\n\t\t\t// if use more than one texture unit to combine or do something crazy here:)\r\n\t\t\t#if_TEXTURE1\r\n\t\t\ttexel = texel * texture2D(uTexture1, vTexCoord / #MAX_TEXTURE0);\r\n\t\t\t#end_TEXTURE1\r\n\t\t\t// ... TEXTURE2 ...TEXTURE3 ...\t\t\t\r\n\t\t\t\r\n\t\t\tif (texel.a < 0.5) discard; // TODO (z-order/blend mode!!!)\r\n\t\t\t\r\n\t\t\t#if_PICKING\r\n\t\t\tif (uResolution.x == 1.0) { \r\n\t\t\t\tgl_FragColor = vRGBA; // vRGBA color defines element-number for gl-picking;\r\n\t\t\t}\r\n\t\t\telse {\r\n\t\t\t\t#if_RGBA\r\n\t\t\t\tgl_FragColor = texel * vRGBA;\r\n\t\t\t\t#else_RGBA\r\n\t\t\t\tgl_FragColor = texel;\r\n\t\t\t\t#end_RGBA\t\t\t\t\r\n\t\t\t}\r\n\t\t\t#else_PICKING\r\n\t\t\t\t#if_RGBA\r\n\t\t\t\tgl_FragColor = texel * vRGBA;\r\n\t\t\t\t#else_RGBA\r\n\t\t\t\tgl_FragColor = texel;\r\n\t\t\t\t#end_RGBA\r\n\t\t\t#end_PICKING\r\n\t\t}\r\n\t";
+					default_vs = "\tattribute vec4 aPosition;\r\n\t\t\r\n\t\t#if_ZINDEX\r\n\t\tattribute float aZindex;\r\n\t\t#end_ZINDEX\r\n\t\t\r\n\t\t#if_RGBA\r\n\t\tattribute vec4 aRGBA;\r\n\t\tattribute vec4 aRGBA_END;\r\n\t\tvarying vec4 vRGBA;\r\n\t\t#end_RGBA\r\n\t\t\r\n\t\t#if_ROTATION\r\n\t\tattribute vec2 aRotation;\r\n\t\tattribute vec4 aPivot;\r\n\t\t#end_ROTATION\r\n\t\t\r\n\t\t#if_PICKING\r\n\t\tattribute vec4 aElement;\r\n\t\t\t#if_RGBA\r\n\t\t\t#else_RGBA\r\n\t\t\tvarying vec4 vRGBA;\r\n\t\t\t#end_RGBA\r\n\t\t#end_PICKING\r\n\t\t\t\r\n\t\tattribute vec2 aTime;\r\n\t\t\r\n\t\tattribute vec2 aTexCoord;\r\n\t\t\r\n\t\tvarying vec2 vTexCoord;\r\n\t\t\r\n\t\tuniform float uTime;\r\n\t\tuniform float uZoom;\r\n\t\tuniform vec2 uResolution;\r\n\t\tuniform vec2 uDelta;\r\n\t\t\r\n\t\tvoid main(void) {\r\n\t\t\t#if_RGBA\r\n\t\t\tvRGBA = aRGBA.wzyx + (aRGBA_END.wzyx - aRGBA.wzyx) * max( 0.0, min( (uTime-aTime.x) / (aTime.y - aTime.x), 1.0));\t\r\n\t\t\t#end_RGBA\r\n\t\t\t\r\n\t\t\t#if_PICKING\r\n\t\t\tif (uResolution.x == 1.0) {\r\n\t\t\t\tvRGBA = aElement;\r\n\t\t\t}\r\n\t\t\t#end_PICKING\r\n\t\t\t\r\n\t\t\tvTexCoord = aTexCoord;\r\n\t\t\t\r\n\t\t\tvec2 VertexPosStart = vec2 ( aPosition ); //vec2 (aPosition.x, aPosition.y);\r\n\t\t\tvec2 VertexPosEnd   = vec2 ( aPosition.z, aPosition.w);\r\n\t\t\t\r\n\t\t\t#if_ROTATION\r\n\t\t\tfloat alpha = aRotation.x + (aRotation.y - aRotation.x)\t* max( 0.0, min( (uTime-aTime.x) / (aTime.y - aTime.x), 1.0));\r\n\t\t\t\t\t\t\t\t\r\n\t\t\tVertexPosStart = (VertexPosStart - vec2(aPivot))\r\n\t\t\t\t\t\t\t* mat2 (\r\n\t\t\t\t\t\t\t\tvec2(cos(alpha), -sin(alpha)),\r\n\t\t\t\t\t\t\t\tvec2(sin(alpha),  cos(alpha))\r\n\t\t\t\t\t\t\t) + vec2(aPivot);\r\n\t\t\t\r\n\t\t\tVertexPosEnd = (VertexPosEnd -  vec2(aPivot.z, aPivot.w))\r\n\t\t\t\t\t\t\t* mat2 (\r\n\t\t\t\t\t\t\t\tvec2(cos(alpha), -sin(alpha)),\r\n\t\t\t\t\t\t\t\tvec2(sin(alpha),  cos(alpha))\r\n\t\t\t\t\t\t\t) + vec2(aPivot.z, aPivot.w);\r\n\t\t\t#end_ROTATION\r\n\t\t\t\t\r\n\t\t\tfloat zoom = uZoom;\r\n\t\t\tfloat width = uResolution.x;\r\n\t\t\tfloat height = uResolution.y;\r\n\t\t\tfloat deltaX = floor(uDelta.x);\r\n\t\t\tfloat deltaY = floor(uDelta.y);\r\n\t\t\t\r\n\t\t\tfloat right = width-deltaX*zoom;\r\n\t\t\tfloat left = -deltaX*zoom;\r\n\t\t\tfloat bottom = height-deltaY*zoom;\r\n\t\t\tfloat top = -deltaY * zoom;\r\n\t\t\t\t\t\t\r\n\t\t\tgl_Position = mat4 (\r\n\t\t\t\tvec4(2.0 / (right - left)*zoom, 0.0, 0.0, 0.0),\r\n\t\t\t\tvec4(0.0, 2.0 / (top - bottom)*zoom, 0.0, 0.0),\r\n\t\t\t\tvec4(0.0, 0.0, -1.0, 0.0), // TODO\r\n\t\t\t\tvec4(-(right + left) / (right - left), -(top + bottom) / (top - bottom), 0.0, 1.0)\r\n\t\t\t)\r\n\t\t\t* vec4( VertexPosStart + floor( \r\n\t\t\t\t\t\t\t\t(VertexPosEnd - VertexPosStart)\r\n\t\t\t\t\t\t\t\t* max( 0.0, min( (uTime-aTime.x) / (aTime.y - aTime.x), 1.0))\r\n\t\t\t\t\t\t\t\t* zoom) / zoom ,\r\n\t\t\t\t#if_ZINDEX\r\n\t\t\t\taZindex\r\n\t\t\t\t#else_ZINDEX\r\n\t\t\t\t0.0\r\n\t\t\t\t#end_ZINDEX\r\n\t\t\t\t, 1.0\r\n\t\t\t)\r\n\t\t\t// rotate displaylist\r\n\t\t\t// *mat4 (\r\n\t\t\t//\tvec4(cos(winkel), -sin(winkel), 0.0, 0.0),\r\n\t\t\t//\tvec4(sin(winkel),  cos(winkel), 0.0, 0.0),\r\n\t\t\t//\tvec4(        0.0,          1.0, 0.0, 0.0),\r\n\t\t\t//\tvec4(        0.0,          0.0, 0.0, 1.0)\r\n\t\t\t//)\r\n\t\t\t;\r\n\t\t}\r\n\t";
 				} else {
-					default_fs = "\tvarying vec2 vTexCoord;\r\n\t\t#if_RGBA\r\n\t\tvarying vec4 vRGBA;\r\n\t\t#else_RGBA\r\n\t\t\t#if_PICKING\r\n\t\t\tvarying vec4 vRGBA;\r\n\t\t\t#end_PICKING\r\n\t\t#end_RGBA\r\n\t\t\r\n\t\tuniform sampler2D uImage;\r\n\t\t\r\n\t\t#if_PICKING\r\n\t\tuniform vec2 uResolution;\r\n\t\t#end_PICKING\r\n\t\t\r\n\t\tvoid main(void)\r\n\t\t{\r\n\t\t\tvec4 texel = texture2D(uImage, vTexCoord / #MAX_TEXTURE_SIZE);\r\n\t\t\tif(texel.a < 0.5) discard; // TODO (z-order/blend mode!!!)\r\n\t\t\t#if_PICKING\r\n\t\t\tif (uResolution.x == 1.0) { \r\n\t\t\t\tgl_FragColor = vRGBA; //vec4(1.0, 1.0, 1.0, 1.0);\r\n\t\t\t}\r\n\t\t\telse {\r\n\t\t\t\t#if_RGBA\r\n\t\t\t\tgl_FragColor = texel * vRGBA;\r\n\t\t\t\t#else_RGBA\r\n\t\t\t\tgl_FragColor = texel;\r\n\t\t\t\t#end_RGBA\t\t\t\t\r\n\t\t\t}\r\n\t\t\t#else_PICKING\r\n\t\t\t\t#if_RGBA\r\n\t\t\t\tgl_FragColor = texel * vRGBA;\r\n\t\t\t\t#else_RGBA\r\n\t\t\t\tgl_FragColor = texel;\r\n\t\t\t\t#end_RGBA\r\n\t\t\t#end_PICKING\r\n\t\t}\r\n\t";
-					default_vs = "\tattribute vec2 aPosition;\r\n\t\t\r\n\t\t#if_ZINDEX\r\n\t\tattribute float aZindex;\r\n\t\t#end_ZINDEX\r\n\t\t\r\n\t\t#if_RGBA\r\n\t\tattribute vec4 aRGBA;\r\n\t\tvarying vec4 vRGBA;\r\n\t\t#end_RGBA\r\n\r\n\t\t#if_PICKING\r\n\t\tattribute vec4 aElement;\r\n\t\t\t#if_RGBA\r\n\t\t\t#else_RGBA\r\n\t\t\tvarying vec4 vRGBA;\r\n\t\t\t#end_RGBA\r\n\t\t#end_PICKING\r\n\t\t\t\r\n\t\tattribute vec2 aTexCoord;\r\n\t\t\r\n\t\tvarying vec2 vTexCoord;\r\n\t\t\r\n\t\tuniform float uTime;\r\n\t\tuniform float uZoom;\r\n\t\tuniform vec2 uResolution;\r\n\t\tuniform vec2 uDelta;\r\n\t\t\r\n\t\tvoid main(void) {\r\n\t\t\t#if_RGBA\r\n\t\t\tvRGBA = aRGBA.wzyx;\r\n\t\t\t#end_RGBA\r\n\t\t\t\r\n\t\t\t#if_PICKING\r\n\t\t\tif (uResolution.x == 1.0) {\r\n\t\t\t\tvRGBA = aElement;\r\n\t\t\t}\r\n\t\t\t#end_PICKING\r\n\t\t\t\r\n\t\t\tvTexCoord = aTexCoord;\r\n\t\t\t\t\t\t\r\n\t\t\tfloat zoom = uZoom;\r\n\t\t\tfloat width = uResolution.x;\r\n\t\t\tfloat height = uResolution.y;\r\n\t\t\tfloat deltaX = floor(uDelta.x);\r\n\t\t\tfloat deltaY = floor(uDelta.y);\r\n\t\t\t\r\n\t\t\tfloat right = width-deltaX*zoom;\r\n\t\t\tfloat left = -deltaX*zoom;\r\n\t\t\tfloat bottom = height-deltaY*zoom;\r\n\t\t\tfloat top = -deltaY * zoom;\r\n\t\t\t\r\n\t\t\tgl_Position = mat4 (\r\n\t\t\t\tvec4(2.0 / (right - left)*zoom, 0.0, 0.0, 0.0),\r\n\t\t\t\tvec4(0.0, 2.0 / (top - bottom)*zoom, 0.0, 0.0),\r\n\t\t\t\tvec4(0.0, 0.0, -0.001, 0.0),\r\n\t\t\t\tvec4(-(right + left) / (right - left), -(top + bottom) / (top - bottom), 0.0, 1.0)\r\n\t\t\t)\r\n\t\t\t* vec4 (aPosition ,\r\n\t\t\t\t#if_ZINDEX\r\n\t\t\t\taZindex\r\n\t\t\t\t#else_ZINDEX\r\n\t\t\t\t0.0\r\n\t\t\t\t#end_ZINDEX\r\n\t\t\t\t, 1.0\r\n\t\t\t\t);\r\n\t\t}\r\n\t";
+					default_fs = "\tvarying vec2 vTexCoord;\r\n\t\t#if_RGBA\r\n\t\tvarying vec4 vRGBA;\r\n\t\t#else_RGBA\r\n\t\t\t#if_PICKING\r\n\t\t\tvarying vec4 vRGBA;\r\n\t\t\t#end_PICKING\r\n\t\t#end_RGBA\r\n\t\t\r\n\t\t#if_PICKING\r\n\t\tuniform vec2 uResolution;\r\n\t\t#end_PICKING\r\n\t\t\r\n\t\t\r\n\t\t#if_TEXTURE0\r\n\t\tuniform sampler2D uTexture0;\r\n\t\t#end_TEXTURE0\r\n\t\t\r\n\t\t#if_TEXTURE1\r\n\t\tuniform sampler2D uTexture1;\r\n\t\t#end_TEXTURE1\r\n\t\t\r\n\t\tvoid main(void)\r\n\t\t{\t\r\n\t\t\t#if_TEXTURE0\r\n\t\t\tvec4 texel = texture2D(uTexture0, vTexCoord / #MAX_TEXTURE0);\r\n\t\t\t#else_TEXTURE0\r\n\t\t\tvec4 texel = vec4(1.0, 1.0, 1.0, 1.0);\r\n\t\t\t#end_TEXTURE0\r\n\t\t\t\r\n\t\t\t// if use more than one texture unit to combine or do something crazy here:)\r\n\t\t\t#if_TEXTURE1\r\n\t\t\ttexel = texel * texture2D(uTexture1, vTexCoord / #MAX_TEXTURE0);\r\n\t\t\t#end_TEXTURE1\r\n\t\t\t// ... TEXTURE2 ...TEXTURE3 ...\r\n\t\t\t\r\n\t\t\tif (texel.a < 0.5) discard; // TODO (z-order/blend mode!!!)\r\n\t\t\t\r\n\t\t\t#if_PICKING\r\n\t\t\tif (uResolution.x == 1.0) { \r\n\t\t\t\tgl_FragColor = vRGBA; // vRGBA color defines element-number for gl-picking;\r\n\t\t\t}\r\n\t\t\telse {\r\n\t\t\t\t#if_RGBA\r\n\t\t\t\tgl_FragColor = texel * vRGBA;\r\n\t\t\t\t#else_RGBA\r\n\t\t\t\tgl_FragColor = texel;\r\n\t\t\t\t#end_RGBA\t\t\t\t\r\n\t\t\t}\r\n\t\t\t#else_PICKING\r\n\t\t\t\t#if_RGBA\r\n\t\t\t\tgl_FragColor = texel * vRGBA;\r\n\t\t\t\t#else_RGBA\r\n\t\t\t\tgl_FragColor = texel;\r\n\t\t\t\t#end_RGBA\r\n\t\t\t#end_PICKING\r\n\t\t}\r\n\t";
+					default_vs = "\tattribute vec2 aPosition;\r\n\t\t\r\n\t\t#if_ZINDEX\r\n\t\tattribute float aZindex;\r\n\t\t#end_ZINDEX\r\n\t\t\r\n\t\t#if_RGBA\r\n\t\tattribute vec4 aRGBA;\r\n\t\tvarying vec4 vRGBA;\r\n\t\t#end_RGBA\r\n\r\n\t\t#if_PICKING\r\n\t\tattribute vec4 aElement;\r\n\t\t\t#if_RGBA\r\n\t\t\t#else_RGBA\r\n\t\t\tvarying vec4 vRGBA;\r\n\t\t\t#end_RGBA\r\n\t\t#end_PICKING\r\n\t\t\t\r\n\t\tattribute vec2 aTexCoord;\r\n\t\t\r\n\t\tvarying vec2 vTexCoord;\r\n\t\t\r\n\t\tuniform float uTime;\r\n\t\tuniform float uZoom;\r\n\t\tuniform vec2 uResolution;\r\n\t\tuniform vec2 uDelta;\r\n\t\t\r\n\t\tvoid main(void) {\r\n\t\t\t#if_RGBA\r\n\t\t\tvRGBA = aRGBA.wzyx;\r\n\t\t\t#end_RGBA\r\n\t\t\t\r\n\t\t\t#if_PICKING\r\n\t\t\tif (uResolution.x == 1.0) {\r\n\t\t\t\tvRGBA = aElement;\r\n\t\t\t}\r\n\t\t\t#end_PICKING\r\n\t\t\t\r\n\t\t\tvTexCoord = aTexCoord;\r\n\t\t\t\t\t\t\r\n\t\t\tfloat zoom = uZoom;\r\n\t\t\tfloat width = uResolution.x;\r\n\t\t\tfloat height = uResolution.y;\r\n\t\t\tfloat deltaX = floor(uDelta.x);\r\n\t\t\tfloat deltaY = floor(uDelta.y);\r\n\t\t\t\r\n\t\t\tfloat right = width-deltaX*zoom;\r\n\t\t\tfloat left = -deltaX*zoom;\r\n\t\t\tfloat bottom = height-deltaY*zoom;\r\n\t\t\tfloat top = -deltaY * zoom;\r\n\t\t\t\r\n\t\t\tgl_Position = mat4 (\r\n\t\t\t\tvec4(2.0 / (right - left)*zoom, 0.0, 0.0, 0.0),\r\n\t\t\t\tvec4(0.0, 2.0 / (top - bottom)*zoom, 0.0, 0.0),\r\n\t\t\t\tvec4(0.0, 0.0, -1.0, 0.0),\r\n\t\t\t\tvec4(-(right + left) / (right - left), -(top + bottom) / (top - bottom), 0.0, 1.0)\r\n\t\t\t)\r\n\t\t\t* vec4 (aPosition ,\r\n\t\t\t\t#if_ZINDEX\r\n\t\t\t\taZindex\r\n\t\t\t\t#else_ZINDEX\r\n\t\t\t\t0.0\r\n\t\t\t\t#end_ZINDEX\r\n\t\t\t\t, 1.0\r\n\t\t\t\t);\r\n\t\t}\r\n\t";
 				}
-				if(fs == "") pmap.h[type].compile(null,type,default_fs,vs,$bind(this,this.onerror)); else if(vs == "") pmap.h[type].compile(null,type,fs,default_vs,$bind(this,this.onerror)); else pmap.h[type].compile(null,type,fs,vs,$bind(this,this.onerror));
+				if(param.fshadersrc == "") pmap.h[type].compile(null,type,textureUnits,default_fs,param.vshadersrc,$bind(this,this.onerror)); else if(param.vshadersrc == "") pmap.h[type].compile(null,type,textureUnits,param.fshadersrc,default_vs,$bind(this,this.onerror)); else pmap.h[type].compile(null,type,textureUnits,param.fshadersrc,param.vshadersrc,$bind(this,this.onerror));
 			}
-			if(fs != "") this.fragmentShaderSrc[nr] = fs;
-			if(vs != "") this.vertexShaderSrc[nr] = vs;
+			if(param.fshadersrc != "") this.fragmentShaderSrc[param.program] = param.fshadersrc;
+			if(param.vshadersrc != "") this.vertexShaderSrc[param.program] = param.vshadersrc;
 		}
 	}
-	,loadShaderSrc: function(nr,fsUrl,vsUrl) {
-		var fsSrc = "";
-		if(fsUrl != "") {
-			var req = js_Browser.createXMLHttpRequest();
-			req.open("GET",fsUrl,false);
-			req.send();
-			fsSrc = req.responseText;
-		}
-		var vsSrc = "";
-		if(vsUrl != "") {
-			var req1 = js_Browser.createXMLHttpRequest();
-			req1.open("GET",vsUrl,false);
-			req1.send();
-			vsSrc = req1.responseText;
-		}
-		this.setShaderSrc(nr,fsSrc,vsSrc);
+	,loadShader: function(url) {
+		var shadersrc = "";
+		var req = js_Browser.createXMLHttpRequest();
+		req.open("GET",url,false);
+		req.send();
+		shadersrc = req.responseText;
+		return shadersrc;
 	}
 	,__class__: de_peote_view_ProgramCache
 };
@@ -1646,7 +1752,7 @@ de_peote_view_displaylist_I_$Displaylist.__name__ = true;
 de_peote_view_displaylist_I_$Displaylist.prototype = {
 	__class__: de_peote_view_displaylist_I_$Displaylist
 };
-var de_peote_view_displaylist_Displaylist_$de_$peote_$view_$element_$ElementAnim_$de_$peote_$view_$element_$ElementAnimBuffer = function(param,programCache,texturecache) {
+var de_peote_view_displaylist_Displaylist_$de_$peote_$view_$element_$ElementAnim_$de_$peote_$view_$element_$ElementAnimBuffer = function(param,programCache,imageCache) {
 	this.enable = true;
 	this.renderBackground = false;
 	this.a = 1.0;
@@ -1665,12 +1771,12 @@ var de_peote_view_displaylist_Displaylist_$de_$peote_$view_$element_$ElementAnim
 	this.next = this;
 	this.prev = this;
 	this.type = 0;
-	this.texturecache = texturecache;
+	this.imageCache = imageCache;
 	this.programCache = programCache;
 	this.type = param.type;
-	if(param.elements != null) this.elements = param.elements; else this.elements = 1;
-	if(param.programs != null) this.programs = param.programs; else this.programs = 1;
-	this.segments = Math.floor(Math.max(param.segments != null?param.segments:1,this.programs));
+	if(param.maxElements != null) this.elements = param.maxElements; else this.elements = 1;
+	if(param.maxPrograms != null) this.programs = param.maxPrograms; else this.programs = 1;
+	this.segments = Math.floor(Math.max(param.bufferSegments != null?param.bufferSegments:1,this.programs));
 	if(param.z != null) this.z = param.z; else this.z = 0;
 	var this1;
 	this1 = new Array(this.elements);
@@ -1707,14 +1813,14 @@ de_peote_view_displaylist_Displaylist_$de_$peote_$view_$element_$ElementAnim_$de
 		if(e == null) {
 			e = js_Boot.__cast(new de_peote_view_element_ElementAnim() , de_peote_view_element_I_$Element);
 			if(param.program == null) param.program = this.programCache.program.length - 1;
-			this.buffer.addElement(e,this.programCache.getProgram(param.program,this.type,this.elemBuff),param.program);
+			this.buffer.addElement(e,this.programCache.getProgram(param.program,this.type,this.elemBuff),param.program,this.programCache.programTextures[param.program]);
 			this.element[param.element] = e;
 		} else if(param.program != null && param.program != e.act_program.program_nr) {
 			this.elemBuff.del(e);
 			this.buffer.delElement(e);
-			this.buffer.addElement(e,this.programCache.getProgram(param.program,this.type,this.elemBuff),param.program);
+			this.buffer.addElement(e,this.programCache.getProgram(param.program,this.type,this.elemBuff),param.program,this.programCache.programTextures[param.program]);
 		}
-		e.set(this.elemBuff,param,this.texturecache);
+		e.set(this.elemBuff,param,this.imageCache);
 	}
 	,getElement: function(element_nr) {
 		var e = this.element[element_nr];
@@ -1728,7 +1834,7 @@ de_peote_view_displaylist_Displaylist_$de_$peote_$view_$element_$ElementAnim_$de
 		if(e != null) {
 			this.element[element_nr] = null;
 			this.buffer.delElement(e);
-			e.del(this.elemBuff,this.texturecache);
+			e.del(this.elemBuff,this.imageCache);
 		}
 	}
 	,delAllElement: function() {
@@ -1741,7 +1847,7 @@ de_peote_view_displaylist_Displaylist_$de_$peote_$view_$element_$ElementAnim_$de
 	}
 	,__class__: de_peote_view_displaylist_Displaylist_$de_$peote_$view_$element_$ElementAnim_$de_$peote_$view_$element_$ElementAnimBuffer
 };
-var de_peote_view_displaylist_Displaylist_$de_$peote_$view_$element_$ElementSimple_$de_$peote_$view_$element_$ElementSimpleBuffer = function(param,programCache,texturecache) {
+var de_peote_view_displaylist_Displaylist_$de_$peote_$view_$element_$ElementSimple_$de_$peote_$view_$element_$ElementSimpleBuffer = function(param,programCache,imageCache) {
 	this.enable = true;
 	this.renderBackground = false;
 	this.a = 1.0;
@@ -1760,12 +1866,12 @@ var de_peote_view_displaylist_Displaylist_$de_$peote_$view_$element_$ElementSimp
 	this.next = this;
 	this.prev = this;
 	this.type = 0;
-	this.texturecache = texturecache;
+	this.imageCache = imageCache;
 	this.programCache = programCache;
 	this.type = param.type;
-	if(param.elements != null) this.elements = param.elements; else this.elements = 1;
-	if(param.programs != null) this.programs = param.programs; else this.programs = 1;
-	this.segments = Math.floor(Math.max(param.segments != null?param.segments:1,this.programs));
+	if(param.maxElements != null) this.elements = param.maxElements; else this.elements = 1;
+	if(param.maxPrograms != null) this.programs = param.maxPrograms; else this.programs = 1;
+	this.segments = Math.floor(Math.max(param.bufferSegments != null?param.bufferSegments:1,this.programs));
 	if(param.z != null) this.z = param.z; else this.z = 0;
 	var this1;
 	this1 = new Array(this.elements);
@@ -1802,14 +1908,14 @@ de_peote_view_displaylist_Displaylist_$de_$peote_$view_$element_$ElementSimple_$
 		if(e == null) {
 			e = js_Boot.__cast(new de_peote_view_element_ElementSimple() , de_peote_view_element_I_$Element);
 			if(param.program == null) param.program = this.programCache.program.length - 1;
-			this.buffer.addElement(e,this.programCache.getProgram(param.program,this.type,this.elemBuff),param.program);
+			this.buffer.addElement(e,this.programCache.getProgram(param.program,this.type,this.elemBuff),param.program,this.programCache.programTextures[param.program]);
 			this.element[param.element] = e;
 		} else if(param.program != null && param.program != e.act_program.program_nr) {
 			this.elemBuff.del(e);
 			this.buffer.delElement(e);
-			this.buffer.addElement(e,this.programCache.getProgram(param.program,this.type,this.elemBuff),param.program);
+			this.buffer.addElement(e,this.programCache.getProgram(param.program,this.type,this.elemBuff),param.program,this.programCache.programTextures[param.program]);
 		}
-		e.set(this.elemBuff,param,this.texturecache);
+		e.set(this.elemBuff,param,this.imageCache);
 	}
 	,getElement: function(element_nr) {
 		var e = this.element[element_nr];
@@ -1823,7 +1929,7 @@ de_peote_view_displaylist_Displaylist_$de_$peote_$view_$element_$ElementSimple_$
 		if(e != null) {
 			this.element[element_nr] = null;
 			this.buffer.delElement(e);
-			e.del(this.elemBuff,this.texturecache);
+			e.del(this.elemBuff,this.imageCache);
 		}
 	}
 	,delAllElement: function() {
@@ -1883,7 +1989,7 @@ var de_peote_view_element_ElementAnim = function() {
 de_peote_view_element_ElementAnim.__name__ = true;
 de_peote_view_element_ElementAnim.__interfaces__ = [de_peote_view_element_I_$Element];
 de_peote_view_element_ElementAnim.prototype = {
-	set: function(elemBuff,param,texturecache) {
+	set: function(elemBuff,param,imageCache) {
 		if(param.x == null) param.x = this.x;
 		if(param.y == null) param.y = this.y;
 		if(param.w == null) param.w = this.w;
@@ -1916,11 +2022,11 @@ de_peote_view_element_ElementAnim.prototype = {
 		if(param.z == null) param.z = this.z;
 		if(param.image == null && de_peote_view_PeoteView.elementDefaults.image != null) param.image = de_peote_view_PeoteView.elementDefaults.image;
 		if(param.image != null && param.image != this.image) {
-			if(this.image != -1) texturecache.unUseImage(this.image);
-			if(texturecache.useImage(param.image) != null) this.image = param.image;
+			if(this.image != -1) imageCache.unUseImage(this.image);
+			if(imageCache.useImage(param.image) != null) this.image = param.image;
 		}
 		if(this.image != -1) {
-			var img = texturecache.image[this.image];
+			var img = imageCache.images[this.image];
 			if(param.tx == null) param.tx = img.tx;
 			if(param.ty == null) param.ty = img.ty;
 			if(param.tw == null) param.tw = img.tw;
@@ -1951,15 +2057,15 @@ de_peote_view_element_ElementAnim.prototype = {
 		this.z = param.z;
 	}
 	,get: function() {
-		return { x : this.x, y : this.y, z : this.z, w : this.w, h : this.h, rgba : this.rgba, tile : this.tile, image : this.image};
+		return { x : this.x, y : this.y, z : this.z, w : this.w, h : this.h, rgba : this.rgba, rotation : this.rotation, pivotX : this.pivotX, pivotY : this.pivotY, time : this.time, tile : this.tile, image : this.image};
 	}
 	,bufferUpdate: function(a,b) {
 		this.act_program = a;
 		this.buf_pos = b;
 	}
-	,del: function(elemBuff,texturecache) {
+	,del: function(elemBuff,imageCache) {
 		elemBuff.del(this);
-		if(this.image != -1) texturecache.unUseImage(this.image);
+		if(this.image != -1) imageCache.unUseImage(this.image);
 	}
 	,__class__: de_peote_view_element_ElementAnim
 };
@@ -2078,7 +2184,7 @@ de_peote_view_element_ElementAnimBuffer.prototype = {
 		var rgba2 = param.end.rgba;
 		var t1 = param.start.time;
 		var t2 = param.end.time;
-		var z = param.z;
+		var z = Math.max(0.0,Math.min(1.0,param.z / 32767));
 		var tx = param.tx;
 		var ty = param.ty;
 		var txw = tx + param.tw;
@@ -2192,10 +2298,10 @@ de_peote_view_element_ElementAnimBuffer.prototype = {
 		lime_graphics_opengl_GL.context.bindBuffer(34962,null);
 	}
 	,getDefaultFragmentShaderSrc: function() {
-		return "\tvarying vec2 vTexCoord;\r\n\t\t#if_RGBA\r\n\t\tvarying vec4 vRGBA;\r\n\t\t#else_RGBA\r\n\t\t\t#if_PICKING\r\n\t\t\tvarying vec4 vRGBA;\r\n\t\t\t#end_PICKING\r\n\t\t#end_RGBA\r\n\t\t\r\n\t\tuniform sampler2D uImage;\r\n\t\t\r\n\t\t#if_PICKING\r\n\t\tuniform vec2 uResolution;\r\n\t\t#end_PICKING\r\n\t\t\r\n\t\tvoid main(void)\r\n\t\t{\r\n\t\t\tvec4 texel = texture2D(uImage, vTexCoord / #MAX_TEXTURE_SIZE);\r\n\t\t\tif(texel.a < 0.5) discard; // TODO (z-order/blend mode!!!)\r\n\t\t\t#if_PICKING\r\n\t\t\tif (uResolution.x == 1.0) { \r\n\t\t\t\tgl_FragColor = vRGBA; //vec4(1.0, 1.0, 1.0, 1.0);\r\n\t\t\t}\r\n\t\t\telse {\r\n\t\t\t\t#if_RGBA\r\n\t\t\t\tgl_FragColor = texel * vRGBA;\r\n\t\t\t\t#else_RGBA\r\n\t\t\t\tgl_FragColor = texel;\r\n\t\t\t\t#end_RGBA\t\t\t\t\r\n\t\t\t}\r\n\t\t\t#else_PICKING\r\n\t\t\t\t#if_RGBA\r\n\t\t\t\tgl_FragColor = texel * vRGBA;\r\n\t\t\t\t#else_RGBA\r\n\t\t\t\tgl_FragColor = texel;\r\n\t\t\t\t#end_RGBA\r\n\t\t\t#end_PICKING\r\n\t\t}\r\n\t";
+		return "\tvarying vec2 vTexCoord;\r\n\t\t#if_RGBA\r\n\t\tvarying vec4 vRGBA;\r\n\t\t#else_RGBA\r\n\t\t\t#if_PICKING\r\n\t\t\tvarying vec4 vRGBA;\r\n\t\t\t#end_PICKING\r\n\t\t#end_RGBA\r\n\t\t\r\n\t\t#if_PICKING\r\n\t\tuniform vec2 uResolution;\r\n\t\t#end_PICKING\r\n\t\t\r\n\t\t\r\n\t\t#if_TEXTURE0\r\n\t\tuniform sampler2D uTexture0;\r\n\t\t#end_TEXTURE0\r\n\t\t\r\n\t\t#if_TEXTURE1\r\n\t\tuniform sampler2D uTexture1;\r\n\t\t#end_TEXTURE1\r\n\t\t\r\n\t\tvoid main(void)\r\n\t\t{\r\n\t\t\t#if_TEXTURE0\r\n\t\t\tvec4 texel = texture2D(uTexture0, vTexCoord / #MAX_TEXTURE0);\r\n\t\t\t#else_TEXTURE0\r\n\t\t\tvec4 texel = vec4(1.0, 1.0, 1.0, 1.0);\r\n\t\t\t#end_TEXTURE0\r\n\t\t\t\r\n\t\t\t// if use more than one texture unit to combine or do something crazy here:)\r\n\t\t\t#if_TEXTURE1\r\n\t\t\ttexel = texel * texture2D(uTexture1, vTexCoord / #MAX_TEXTURE0);\r\n\t\t\t#end_TEXTURE1\r\n\t\t\t// ... TEXTURE2 ...TEXTURE3 ...\t\t\t\r\n\t\t\t\r\n\t\t\tif (texel.a < 0.5) discard; // TODO (z-order/blend mode!!!)\r\n\t\t\t\r\n\t\t\t#if_PICKING\r\n\t\t\tif (uResolution.x == 1.0) { \r\n\t\t\t\tgl_FragColor = vRGBA; // vRGBA color defines element-number for gl-picking;\r\n\t\t\t}\r\n\t\t\telse {\r\n\t\t\t\t#if_RGBA\r\n\t\t\t\tgl_FragColor = texel * vRGBA;\r\n\t\t\t\t#else_RGBA\r\n\t\t\t\tgl_FragColor = texel;\r\n\t\t\t\t#end_RGBA\t\t\t\t\r\n\t\t\t}\r\n\t\t\t#else_PICKING\r\n\t\t\t\t#if_RGBA\r\n\t\t\t\tgl_FragColor = texel * vRGBA;\r\n\t\t\t\t#else_RGBA\r\n\t\t\t\tgl_FragColor = texel;\r\n\t\t\t\t#end_RGBA\r\n\t\t\t#end_PICKING\r\n\t\t}\r\n\t";
 	}
 	,getDefaultVertexShaderSrc: function() {
-		return "\tattribute vec4 aPosition;\r\n\t\t\r\n\t\t#if_ZINDEX\r\n\t\tattribute float aZindex;\r\n\t\t#end_ZINDEX\r\n\t\t\r\n\t\t#if_RGBA\r\n\t\tattribute vec4 aRGBA;\r\n\t\tattribute vec4 aRGBA_END;\r\n\t\tvarying vec4 vRGBA;\r\n\t\t#end_RGBA\r\n\t\t\r\n\t\t#if_ROTATION\r\n\t\tattribute vec2 aRotation;\r\n\t\tattribute vec4 aPivot;\r\n\t\t#end_ROTATION\r\n\t\t\r\n\t\t#if_PICKING\r\n\t\tattribute vec4 aElement;\r\n\t\t\t#if_RGBA\r\n\t\t\t#else_RGBA\r\n\t\t\tvarying vec4 vRGBA;\r\n\t\t\t#end_RGBA\r\n\t\t#end_PICKING\r\n\t\t\t\r\n\t\tattribute vec2 aTime;\r\n\t\t\r\n\t\tattribute vec2 aTexCoord;\r\n\t\t\r\n\t\tvarying vec2 vTexCoord;\r\n\t\t\r\n\t\tuniform float uTime;\r\n\t\tuniform float uZoom;\r\n\t\tuniform vec2 uResolution;\r\n\t\tuniform vec2 uDelta;\r\n\t\t\r\n\t\tvoid main(void) {\r\n\t\t\t#if_RGBA\r\n\t\t\tvRGBA = aRGBA.wzyx + (aRGBA_END.wzyx - aRGBA.wzyx) * max( 0.0, min( (uTime-aTime.x) / (aTime.y - aTime.x), 1.0));\t\r\n\t\t\t#end_RGBA\r\n\t\t\t\r\n\t\t\t#if_PICKING\r\n\t\t\tif (uResolution.x == 1.0) {\r\n\t\t\t\tvRGBA = aElement;\r\n\t\t\t}\r\n\t\t\t#end_PICKING\r\n\t\t\t\r\n\t\t\tvTexCoord = aTexCoord;\r\n\t\t\t\r\n\t\t\tvec2 VertexPosStart = vec2 ( aPosition ); //vec2 (aPosition.x, aPosition.y);\r\n\t\t\tvec2 VertexPosEnd   = vec2 ( aPosition.z, aPosition.w);\r\n\t\t\t\r\n\t\t\t#if_ROTATION\r\n\t\t\tfloat alpha = aRotation.x + (aRotation.y - aRotation.x)\t* max( 0.0, min( (uTime-aTime.x) / (aTime.y - aTime.x), 1.0));\r\n\t\t\t\t\t\t\t\t\r\n\t\t\tVertexPosStart = (VertexPosStart - vec2(aPivot))\r\n\t\t\t\t\t\t\t* mat2 (\r\n\t\t\t\t\t\t\t\tvec2(cos(alpha), -sin(alpha)),\r\n\t\t\t\t\t\t\t\tvec2(sin(alpha),  cos(alpha))\r\n\t\t\t\t\t\t\t) + vec2(aPivot);\r\n\t\t\t\r\n\t\t\tVertexPosEnd = (VertexPosEnd -  vec2(aPivot.z, aPivot.w))\r\n\t\t\t\t\t\t\t* mat2 (\r\n\t\t\t\t\t\t\t\tvec2(cos(alpha), -sin(alpha)),\r\n\t\t\t\t\t\t\t\tvec2(sin(alpha),  cos(alpha))\r\n\t\t\t\t\t\t\t) + vec2(aPivot.z, aPivot.w);\r\n\t\t\t#end_ROTATION\r\n\t\t\t\t\r\n\t\t\tfloat zoom = uZoom;\r\n\t\t\tfloat width = uResolution.x;\r\n\t\t\tfloat height = uResolution.y;\r\n\t\t\tfloat deltaX = floor(uDelta.x);\r\n\t\t\tfloat deltaY = floor(uDelta.y);\r\n\t\t\t\r\n\t\t\tfloat right = width-deltaX*zoom;\r\n\t\t\tfloat left = -deltaX*zoom;\r\n\t\t\tfloat bottom = height-deltaY*zoom;\r\n\t\t\tfloat top = -deltaY * zoom;\r\n\t\t\t\t\t\t\r\n\t\t\tgl_Position = mat4 (\r\n\t\t\t\tvec4(2.0 / (right - left)*zoom, 0.0, 0.0, 0.0),\r\n\t\t\t\tvec4(0.0, 2.0 / (top - bottom)*zoom, 0.0, 0.0),\r\n\t\t\t\tvec4(0.0, 0.0, -0.001, 0.0),\r\n\t\t\t\tvec4(-(right + left) / (right - left), -(top + bottom) / (top - bottom), 0.0, 1.0)\r\n\t\t\t)\r\n\t\t\t* vec4( VertexPosStart + floor( \r\n\t\t\t\t\t\t\t\t(VertexPosEnd - VertexPosStart)\r\n\t\t\t\t\t\t\t\t* max( 0.0, min( (uTime-aTime.x) / (aTime.y - aTime.x), 1.0))\r\n\t\t\t\t\t\t\t\t* zoom) / zoom ,\r\n\t\t\t\t#if_ZINDEX\r\n\t\t\t\taZindex\r\n\t\t\t\t#else_ZINDEX\r\n\t\t\t\t0.0\r\n\t\t\t\t#end_ZINDEX\r\n\t\t\t\t, 1.0\r\n\t\t\t)\r\n\t\t\t// rotate displaylist\r\n\t\t\t/** mat4 (\r\n\t\t\t\tvec4(cos(winkel), -sin(winkel), 0.0, 0.0),\r\n\t\t\t\tvec4(sin(winkel),  cos(winkel), 0.0, 0.0),\r\n\t\t\t\tvec4(        0.0,          1.0, 0.0, 0.0),\r\n\t\t\t\tvec4(        0.0,          0.0, 0.0, 1.0)\r\n\t\t\t)*/\r\n\t\t\t;\r\n\t\t}\r\n\t";
+		return "\tattribute vec4 aPosition;\r\n\t\t\r\n\t\t#if_ZINDEX\r\n\t\tattribute float aZindex;\r\n\t\t#end_ZINDEX\r\n\t\t\r\n\t\t#if_RGBA\r\n\t\tattribute vec4 aRGBA;\r\n\t\tattribute vec4 aRGBA_END;\r\n\t\tvarying vec4 vRGBA;\r\n\t\t#end_RGBA\r\n\t\t\r\n\t\t#if_ROTATION\r\n\t\tattribute vec2 aRotation;\r\n\t\tattribute vec4 aPivot;\r\n\t\t#end_ROTATION\r\n\t\t\r\n\t\t#if_PICKING\r\n\t\tattribute vec4 aElement;\r\n\t\t\t#if_RGBA\r\n\t\t\t#else_RGBA\r\n\t\t\tvarying vec4 vRGBA;\r\n\t\t\t#end_RGBA\r\n\t\t#end_PICKING\r\n\t\t\t\r\n\t\tattribute vec2 aTime;\r\n\t\t\r\n\t\tattribute vec2 aTexCoord;\r\n\t\t\r\n\t\tvarying vec2 vTexCoord;\r\n\t\t\r\n\t\tuniform float uTime;\r\n\t\tuniform float uZoom;\r\n\t\tuniform vec2 uResolution;\r\n\t\tuniform vec2 uDelta;\r\n\t\t\r\n\t\tvoid main(void) {\r\n\t\t\t#if_RGBA\r\n\t\t\tvRGBA = aRGBA.wzyx + (aRGBA_END.wzyx - aRGBA.wzyx) * max( 0.0, min( (uTime-aTime.x) / (aTime.y - aTime.x), 1.0));\t\r\n\t\t\t#end_RGBA\r\n\t\t\t\r\n\t\t\t#if_PICKING\r\n\t\t\tif (uResolution.x == 1.0) {\r\n\t\t\t\tvRGBA = aElement;\r\n\t\t\t}\r\n\t\t\t#end_PICKING\r\n\t\t\t\r\n\t\t\tvTexCoord = aTexCoord;\r\n\t\t\t\r\n\t\t\tvec2 VertexPosStart = vec2 ( aPosition ); //vec2 (aPosition.x, aPosition.y);\r\n\t\t\tvec2 VertexPosEnd   = vec2 ( aPosition.z, aPosition.w);\r\n\t\t\t\r\n\t\t\t#if_ROTATION\r\n\t\t\tfloat alpha = aRotation.x + (aRotation.y - aRotation.x)\t* max( 0.0, min( (uTime-aTime.x) / (aTime.y - aTime.x), 1.0));\r\n\t\t\t\t\t\t\t\t\r\n\t\t\tVertexPosStart = (VertexPosStart - vec2(aPivot))\r\n\t\t\t\t\t\t\t* mat2 (\r\n\t\t\t\t\t\t\t\tvec2(cos(alpha), -sin(alpha)),\r\n\t\t\t\t\t\t\t\tvec2(sin(alpha),  cos(alpha))\r\n\t\t\t\t\t\t\t) + vec2(aPivot);\r\n\t\t\t\r\n\t\t\tVertexPosEnd = (VertexPosEnd -  vec2(aPivot.z, aPivot.w))\r\n\t\t\t\t\t\t\t* mat2 (\r\n\t\t\t\t\t\t\t\tvec2(cos(alpha), -sin(alpha)),\r\n\t\t\t\t\t\t\t\tvec2(sin(alpha),  cos(alpha))\r\n\t\t\t\t\t\t\t) + vec2(aPivot.z, aPivot.w);\r\n\t\t\t#end_ROTATION\r\n\t\t\t\t\r\n\t\t\tfloat zoom = uZoom;\r\n\t\t\tfloat width = uResolution.x;\r\n\t\t\tfloat height = uResolution.y;\r\n\t\t\tfloat deltaX = floor(uDelta.x);\r\n\t\t\tfloat deltaY = floor(uDelta.y);\r\n\t\t\t\r\n\t\t\tfloat right = width-deltaX*zoom;\r\n\t\t\tfloat left = -deltaX*zoom;\r\n\t\t\tfloat bottom = height-deltaY*zoom;\r\n\t\t\tfloat top = -deltaY * zoom;\r\n\t\t\t\t\t\t\r\n\t\t\tgl_Position = mat4 (\r\n\t\t\t\tvec4(2.0 / (right - left)*zoom, 0.0, 0.0, 0.0),\r\n\t\t\t\tvec4(0.0, 2.0 / (top - bottom)*zoom, 0.0, 0.0),\r\n\t\t\t\tvec4(0.0, 0.0, -1.0, 0.0), // TODO\r\n\t\t\t\tvec4(-(right + left) / (right - left), -(top + bottom) / (top - bottom), 0.0, 1.0)\r\n\t\t\t)\r\n\t\t\t* vec4( VertexPosStart + floor( \r\n\t\t\t\t\t\t\t\t(VertexPosEnd - VertexPosStart)\r\n\t\t\t\t\t\t\t\t* max( 0.0, min( (uTime-aTime.x) / (aTime.y - aTime.x), 1.0))\r\n\t\t\t\t\t\t\t\t* zoom) / zoom ,\r\n\t\t\t\t#if_ZINDEX\r\n\t\t\t\taZindex\r\n\t\t\t\t#else_ZINDEX\r\n\t\t\t\t0.0\r\n\t\t\t\t#end_ZINDEX\r\n\t\t\t\t, 1.0\r\n\t\t\t)\r\n\t\t\t// rotate displaylist\r\n\t\t\t// *mat4 (\r\n\t\t\t//\tvec4(cos(winkel), -sin(winkel), 0.0, 0.0),\r\n\t\t\t//\tvec4(sin(winkel),  cos(winkel), 0.0, 0.0),\r\n\t\t\t//\tvec4(        0.0,          1.0, 0.0, 0.0),\r\n\t\t\t//\tvec4(        0.0,          0.0, 0.0, 1.0)\r\n\t\t\t//)\r\n\t\t\t;\r\n\t\t}\r\n\t";
 	}
 	,__class__: de_peote_view_element_ElementAnimBuffer
 };
@@ -2211,7 +2317,7 @@ var de_peote_view_element_ElementSimple = function() {
 de_peote_view_element_ElementSimple.__name__ = true;
 de_peote_view_element_ElementSimple.__interfaces__ = [de_peote_view_element_I_$Element];
 de_peote_view_element_ElementSimple.prototype = {
-	set: function(elemBuff,param,texturecache) {
+	set: function(elemBuff,param,imageCache) {
 		if(param.x == null) param.x = this.x; else this.x = param.x;
 		if(param.y == null) param.y = this.y; else this.y = param.y;
 		if(param.w == null) param.w = this.w; else this.w = param.w;
@@ -2220,11 +2326,11 @@ de_peote_view_element_ElementSimple.prototype = {
 		if(param.rgba == null) param.rgba = de_peote_view_PeoteView.elementDefaults.rgba;
 		if(param.image == null && de_peote_view_PeoteView.elementDefaults.image != null) param.image = de_peote_view_PeoteView.elementDefaults.image;
 		if(param.image != null && param.image != this.image) {
-			if(this.image != -1) texturecache.unUseImage(this.image);
-			if(texturecache.useImage(param.image) != null) this.image = param.image;
+			if(this.image != -1) imageCache.unUseImage(this.image);
+			if(imageCache.useImage(param.image) != null) this.image = param.image;
 		}
 		if(this.image != -1) {
-			var img = texturecache.image[this.image];
+			var img = imageCache.images[this.image];
 			if(param.tx == null) param.tx = img.tx;
 			if(param.ty == null) param.ty = img.ty;
 			if(param.tw == null) param.tw = img.tw;
@@ -2251,9 +2357,9 @@ de_peote_view_element_ElementSimple.prototype = {
 		this.act_program = a;
 		this.buf_pos = b;
 	}
-	,del: function(elemBuff,texturecache) {
+	,del: function(elemBuff,imageCache) {
 		elemBuff.del(this);
-		if(this.image != -1) texturecache.unUseImage(this.image);
+		if(this.image != -1) imageCache.unUseImage(this.image);
 	}
 	,__class__: de_peote_view_element_ElementSimple
 };
@@ -2348,7 +2454,7 @@ de_peote_view_element_ElementSimpleBuffer.prototype = {
 			xw = xw1 = x + param.w;
 			yh = yh1 = y + param.h;
 		}
-		var z = param.z;
+		var z = Math.max(0.0,Math.min(1.0,param.z / 32767));
 		var rgba = param.rgba;
 		var tx = param.tx;
 		var ty = param.ty;
@@ -2392,18 +2498,19 @@ de_peote_view_element_ElementSimpleBuffer.prototype = {
 		lime_graphics_opengl_GL.context.bindBuffer(34962,null);
 	}
 	,getDefaultFragmentShaderSrc: function() {
-		return "\tvarying vec2 vTexCoord;\r\n\t\t#if_RGBA\r\n\t\tvarying vec4 vRGBA;\r\n\t\t#else_RGBA\r\n\t\t\t#if_PICKING\r\n\t\t\tvarying vec4 vRGBA;\r\n\t\t\t#end_PICKING\r\n\t\t#end_RGBA\r\n\t\t\r\n\t\tuniform sampler2D uImage;\r\n\t\t\r\n\t\t#if_PICKING\r\n\t\tuniform vec2 uResolution;\r\n\t\t#end_PICKING\r\n\t\t\r\n\t\tvoid main(void)\r\n\t\t{\r\n\t\t\tvec4 texel = texture2D(uImage, vTexCoord / #MAX_TEXTURE_SIZE);\r\n\t\t\tif(texel.a < 0.5) discard; // TODO (z-order/blend mode!!!)\r\n\t\t\t#if_PICKING\r\n\t\t\tif (uResolution.x == 1.0) { \r\n\t\t\t\tgl_FragColor = vRGBA; //vec4(1.0, 1.0, 1.0, 1.0);\r\n\t\t\t}\r\n\t\t\telse {\r\n\t\t\t\t#if_RGBA\r\n\t\t\t\tgl_FragColor = texel * vRGBA;\r\n\t\t\t\t#else_RGBA\r\n\t\t\t\tgl_FragColor = texel;\r\n\t\t\t\t#end_RGBA\t\t\t\t\r\n\t\t\t}\r\n\t\t\t#else_PICKING\r\n\t\t\t\t#if_RGBA\r\n\t\t\t\tgl_FragColor = texel * vRGBA;\r\n\t\t\t\t#else_RGBA\r\n\t\t\t\tgl_FragColor = texel;\r\n\t\t\t\t#end_RGBA\r\n\t\t\t#end_PICKING\r\n\t\t}\r\n\t";
+		return "\tvarying vec2 vTexCoord;\r\n\t\t#if_RGBA\r\n\t\tvarying vec4 vRGBA;\r\n\t\t#else_RGBA\r\n\t\t\t#if_PICKING\r\n\t\t\tvarying vec4 vRGBA;\r\n\t\t\t#end_PICKING\r\n\t\t#end_RGBA\r\n\t\t\r\n\t\t#if_PICKING\r\n\t\tuniform vec2 uResolution;\r\n\t\t#end_PICKING\r\n\t\t\r\n\t\t\r\n\t\t#if_TEXTURE0\r\n\t\tuniform sampler2D uTexture0;\r\n\t\t#end_TEXTURE0\r\n\t\t\r\n\t\t#if_TEXTURE1\r\n\t\tuniform sampler2D uTexture1;\r\n\t\t#end_TEXTURE1\r\n\t\t\r\n\t\tvoid main(void)\r\n\t\t{\t\r\n\t\t\t#if_TEXTURE0\r\n\t\t\tvec4 texel = texture2D(uTexture0, vTexCoord / #MAX_TEXTURE0);\r\n\t\t\t#else_TEXTURE0\r\n\t\t\tvec4 texel = vec4(1.0, 1.0, 1.0, 1.0);\r\n\t\t\t#end_TEXTURE0\r\n\t\t\t\r\n\t\t\t// if use more than one texture unit to combine or do something crazy here:)\r\n\t\t\t#if_TEXTURE1\r\n\t\t\ttexel = texel * texture2D(uTexture1, vTexCoord / #MAX_TEXTURE0);\r\n\t\t\t#end_TEXTURE1\r\n\t\t\t// ... TEXTURE2 ...TEXTURE3 ...\r\n\t\t\t\r\n\t\t\tif (texel.a < 0.5) discard; // TODO (z-order/blend mode!!!)\r\n\t\t\t\r\n\t\t\t#if_PICKING\r\n\t\t\tif (uResolution.x == 1.0) { \r\n\t\t\t\tgl_FragColor = vRGBA; // vRGBA color defines element-number for gl-picking;\r\n\t\t\t}\r\n\t\t\telse {\r\n\t\t\t\t#if_RGBA\r\n\t\t\t\tgl_FragColor = texel * vRGBA;\r\n\t\t\t\t#else_RGBA\r\n\t\t\t\tgl_FragColor = texel;\r\n\t\t\t\t#end_RGBA\t\t\t\t\r\n\t\t\t}\r\n\t\t\t#else_PICKING\r\n\t\t\t\t#if_RGBA\r\n\t\t\t\tgl_FragColor = texel * vRGBA;\r\n\t\t\t\t#else_RGBA\r\n\t\t\t\tgl_FragColor = texel;\r\n\t\t\t\t#end_RGBA\r\n\t\t\t#end_PICKING\r\n\t\t}\r\n\t";
 	}
 	,getDefaultVertexShaderSrc: function() {
-		return "\tattribute vec2 aPosition;\r\n\t\t\r\n\t\t#if_ZINDEX\r\n\t\tattribute float aZindex;\r\n\t\t#end_ZINDEX\r\n\t\t\r\n\t\t#if_RGBA\r\n\t\tattribute vec4 aRGBA;\r\n\t\tvarying vec4 vRGBA;\r\n\t\t#end_RGBA\r\n\r\n\t\t#if_PICKING\r\n\t\tattribute vec4 aElement;\r\n\t\t\t#if_RGBA\r\n\t\t\t#else_RGBA\r\n\t\t\tvarying vec4 vRGBA;\r\n\t\t\t#end_RGBA\r\n\t\t#end_PICKING\r\n\t\t\t\r\n\t\tattribute vec2 aTexCoord;\r\n\t\t\r\n\t\tvarying vec2 vTexCoord;\r\n\t\t\r\n\t\tuniform float uTime;\r\n\t\tuniform float uZoom;\r\n\t\tuniform vec2 uResolution;\r\n\t\tuniform vec2 uDelta;\r\n\t\t\r\n\t\tvoid main(void) {\r\n\t\t\t#if_RGBA\r\n\t\t\tvRGBA = aRGBA.wzyx;\r\n\t\t\t#end_RGBA\r\n\t\t\t\r\n\t\t\t#if_PICKING\r\n\t\t\tif (uResolution.x == 1.0) {\r\n\t\t\t\tvRGBA = aElement;\r\n\t\t\t}\r\n\t\t\t#end_PICKING\r\n\t\t\t\r\n\t\t\tvTexCoord = aTexCoord;\r\n\t\t\t\t\t\t\r\n\t\t\tfloat zoom = uZoom;\r\n\t\t\tfloat width = uResolution.x;\r\n\t\t\tfloat height = uResolution.y;\r\n\t\t\tfloat deltaX = floor(uDelta.x);\r\n\t\t\tfloat deltaY = floor(uDelta.y);\r\n\t\t\t\r\n\t\t\tfloat right = width-deltaX*zoom;\r\n\t\t\tfloat left = -deltaX*zoom;\r\n\t\t\tfloat bottom = height-deltaY*zoom;\r\n\t\t\tfloat top = -deltaY * zoom;\r\n\t\t\t\r\n\t\t\tgl_Position = mat4 (\r\n\t\t\t\tvec4(2.0 / (right - left)*zoom, 0.0, 0.0, 0.0),\r\n\t\t\t\tvec4(0.0, 2.0 / (top - bottom)*zoom, 0.0, 0.0),\r\n\t\t\t\tvec4(0.0, 0.0, -0.001, 0.0),\r\n\t\t\t\tvec4(-(right + left) / (right - left), -(top + bottom) / (top - bottom), 0.0, 1.0)\r\n\t\t\t)\r\n\t\t\t* vec4 (aPosition ,\r\n\t\t\t\t#if_ZINDEX\r\n\t\t\t\taZindex\r\n\t\t\t\t#else_ZINDEX\r\n\t\t\t\t0.0\r\n\t\t\t\t#end_ZINDEX\r\n\t\t\t\t, 1.0\r\n\t\t\t\t);\r\n\t\t}\r\n\t";
+		return "\tattribute vec2 aPosition;\r\n\t\t\r\n\t\t#if_ZINDEX\r\n\t\tattribute float aZindex;\r\n\t\t#end_ZINDEX\r\n\t\t\r\n\t\t#if_RGBA\r\n\t\tattribute vec4 aRGBA;\r\n\t\tvarying vec4 vRGBA;\r\n\t\t#end_RGBA\r\n\r\n\t\t#if_PICKING\r\n\t\tattribute vec4 aElement;\r\n\t\t\t#if_RGBA\r\n\t\t\t#else_RGBA\r\n\t\t\tvarying vec4 vRGBA;\r\n\t\t\t#end_RGBA\r\n\t\t#end_PICKING\r\n\t\t\t\r\n\t\tattribute vec2 aTexCoord;\r\n\t\t\r\n\t\tvarying vec2 vTexCoord;\r\n\t\t\r\n\t\tuniform float uTime;\r\n\t\tuniform float uZoom;\r\n\t\tuniform vec2 uResolution;\r\n\t\tuniform vec2 uDelta;\r\n\t\t\r\n\t\tvoid main(void) {\r\n\t\t\t#if_RGBA\r\n\t\t\tvRGBA = aRGBA.wzyx;\r\n\t\t\t#end_RGBA\r\n\t\t\t\r\n\t\t\t#if_PICKING\r\n\t\t\tif (uResolution.x == 1.0) {\r\n\t\t\t\tvRGBA = aElement;\r\n\t\t\t}\r\n\t\t\t#end_PICKING\r\n\t\t\t\r\n\t\t\tvTexCoord = aTexCoord;\r\n\t\t\t\t\t\t\r\n\t\t\tfloat zoom = uZoom;\r\n\t\t\tfloat width = uResolution.x;\r\n\t\t\tfloat height = uResolution.y;\r\n\t\t\tfloat deltaX = floor(uDelta.x);\r\n\t\t\tfloat deltaY = floor(uDelta.y);\r\n\t\t\t\r\n\t\t\tfloat right = width-deltaX*zoom;\r\n\t\t\tfloat left = -deltaX*zoom;\r\n\t\t\tfloat bottom = height-deltaY*zoom;\r\n\t\t\tfloat top = -deltaY * zoom;\r\n\t\t\t\r\n\t\t\tgl_Position = mat4 (\r\n\t\t\t\tvec4(2.0 / (right - left)*zoom, 0.0, 0.0, 0.0),\r\n\t\t\t\tvec4(0.0, 2.0 / (top - bottom)*zoom, 0.0, 0.0),\r\n\t\t\t\tvec4(0.0, 0.0, -1.0, 0.0),\r\n\t\t\t\tvec4(-(right + left) / (right - left), -(top + bottom) / (top - bottom), 0.0, 1.0)\r\n\t\t\t)\r\n\t\t\t* vec4 (aPosition ,\r\n\t\t\t\t#if_ZINDEX\r\n\t\t\t\taZindex\r\n\t\t\t\t#else_ZINDEX\r\n\t\t\t\t0.0\r\n\t\t\t\t#end_ZINDEX\r\n\t\t\t\t, 1.0\r\n\t\t\t\t);\r\n\t\t}\r\n\t";
 	}
 	,__class__: de_peote_view_element_ElementSimpleBuffer
 };
-var de_peote_view_texture_Image = function(image_url,w,h) {
+var de_peote_view_texture_Image = function(image_url,texture,w,h) {
 	this.used = 0;
 	this.holePos = -1;
 	this.url = "";
 	this.url = image_url;
+	this.texture = texture;
 	this.tw = w;
 	this.th = h;
 };
@@ -2419,11 +2526,14 @@ de_peote_view_texture_Image.prototype = {
 				var tmp_canvas;
 				var _this1 = window.document;
 				tmp_canvas = _this1.createElement("canvas");
-				tmp_canvas.width = image.width;
-				tmp_canvas.height = image.height;
+				tmp_canvas.width = _g.tw;
+				tmp_canvas.height = _g.th;
+				var dx = 0;
+				var dy = 0;
+				if(image.width / image.height < _g.tw / _g.th) dx = Math.floor((_g.tw - _g.th * image.width / image.height) / 2); else dy = Math.floor((_g.th - _g.tw * image.height / image.width) / 2);
 				var tmp_context = tmp_canvas.getContext("2d",null);
 				tmp_context.clearRect(0,0,tmp_canvas.width,tmp_canvas.height);
-				tmp_context.drawImage(image,0,0,image.width,image.height);
+				tmp_context.drawImage(image,0,0,image.width,image.height,dx,dy,tmp_canvas.width - dx * 2,tmp_canvas.height - dy * 2);
 				var image_bytes = tmp_context.getImageData(0,0,tmp_canvas.width,tmp_canvas.height);
 				var imageData;
 				var view = image_bytes.data;
@@ -2433,88 +2543,94 @@ de_peote_view_texture_Image.prototype = {
 				tmp_canvas = null;
 				tmp_context = null;
 				image_bytes = null;
-				onload(_g,image.width,image.height,imageData);
+				onload(_g,_g.tw,_g.th,imageData);
+				imageData = null;
 			} catch( e ) {
 				if (e instanceof js__$Boot_HaxeError) e = e.val;
 				onerror(e);
 			}
 		};
-		image.src = this.url;
+		if(this.url.indexOf("http://") == 0 || this.url.indexOf("https://") == 0) {
+			var x = js_Browser.createXMLHttpRequest();
+			x.open("GET","//cors-anywhere.herokuapp.com/" + this.url);
+			x.responseType = "blob";
+			x.onload = function() {
+				var blob = x.response;
+				var fr = new FileReader();
+				fr.onloadend = function() {
+					image.src = fr.result;
+				};
+				fr.readAsDataURL(blob);
+			};
+			x.send();
+		} else image.src = this.url;
 	}
 	,__class__: de_peote_view_texture_Image
 };
-var de_peote_view_texture_Texture = function() { };
-de_peote_view_texture_Texture.__name__ = true;
-de_peote_view_texture_Texture.createEmptyTexture = function(width,height) {
-	var texture = lime_graphics_opengl_GL.context.createTexture();
-	lime_graphics_opengl_GL.context.bindTexture(3553,texture);
-	lime_graphics_opengl_GL.context.texImage2D(3553,0,6408,width,height,0,6408,5121,null);
-	lime_graphics_opengl_GL.context.texParameteri(3553,10240,9729);
-	lime_graphics_opengl_GL.context.texParameteri(3553,10241,9729);
-	lime_graphics_opengl_GL.context.bindTexture(3553,null);
-	return texture;
-};
-de_peote_view_texture_Texture.createSubTexture = function(t,x,y,w,h,data) {
-	lime_graphics_opengl_GL.context.bindTexture(3553,t);
-	lime_graphics_opengl_GL.context.texSubImage2D(3553,0,x,y,w,h,6408,5121,data);
-	lime_graphics_opengl_GL.context.bindTexture(3553,null);
-};
-var de_peote_view_texture_TextureCache = function(img_width,img_height,max_images) {
+var de_peote_view_texture_ImageCache = function(max_imagess,textures) {
 	this.isLoading = 0;
-	this.texture = null;
-	this.segment_width = img_width;
-	this.segment_height = img_height;
-	de_peote_view_texture_TextureCache.max_texture_size = Math.floor(lime_graphics_opengl_GL.context.getParameter(3379) / 2);
 	var this1;
-	this1 = new Array(max_images);
-	this.image = this1;
+	this1 = new Array(max_imagess);
+	this.images = this1;
 	this.unusedImages = new haxe_ds_IntMap();
 	this.imgLoadQueue = [];
-	this.max_h_segments = Math.floor(de_peote_view_texture_TextureCache.max_texture_size / this.segment_width);
-	this.max_v_segments = Math.floor(de_peote_view_texture_TextureCache.max_texture_size / this.segment_height);
-	this.segment_holes = new de_peote_tools_Holes(this.max_h_segments * this.max_v_segments);
-	this.texture = de_peote_view_texture_Texture.createEmptyTexture(this.max_h_segments * this.segment_width,this.max_v_segments * this.segment_height);
+	this.textures = textures;
 };
-de_peote_view_texture_TextureCache.__name__ = true;
-de_peote_view_texture_TextureCache.prototype = {
+de_peote_view_texture_ImageCache.__name__ = true;
+de_peote_view_texture_ImageCache.prototype = {
 	onerror: function(msg) {
 		null;
 	}
-	,setImage: function(image_nr,imageUrl,w,h) {
-		if(h == null) h = 0;
-		if(w == null) w = 0;
-		if(imageUrl == null) imageUrl = "";
-		if(w == 0) w = this.segment_width;
-		if(h == 0) h = this.segment_height;
-		var val = new de_peote_view_texture_Image(imageUrl,w,h);
-		this.image[image_nr] = val;
+	,setImage: function(param) {
+		if(param.texture == null) param.texture = 0;
+		var texture = this.textures[param.texture];
+		var img = this.images[param.image];
+		if(img == null) {
+			if(texture != null) {
+				var val = new de_peote_view_texture_Image(param.filename,texture,texture.segment_width,texture.segment_height);
+				this.images[param.image] = val;
+				if(param.preload) this.useImage(param.image);
+			} else null;
+		} else {
+			if(texture != null && texture != img.texture) {
+				if(img.url == param.filename) {
+				} else if(img.used > 0) null; else if(img.holePos > -1) {
+				}
+			}
+			if(img.url != param.filename) {
+				img.url = param.filename;
+				this.imgLoadQueue.push(img);
+				if(this.isLoading++ == 0) this.imgLoadQueue.shift().load($bind(this,this.onImageLoad),$bind(this,this.onerror));
+			}
+		}
 	}
 	,useImage: function(image_nr) {
-		var img = this.image[image_nr];
-		if(img.used++ == 0) {
-			if(img.holePos == -1) {
-				if(this.segment_holes.hole.length == 0) {
-					if(this.clear() == 0) img = null;
-				}
-				if(img != null) {
-					img.holePos = this.segment_holes.getHole();
-					img.tx = img.holePos % this.max_h_segments * this.segment_width;
-					img.ty = Math.floor(img.holePos / this.max_h_segments) * this.segment_height;
-					this.imgLoadQueue.push(img);
-					if(img.url != "") {
-						if(this.isLoading++ == 0) this.imgLoadQueue.shift().load($bind(this,this.onImageLoad),$bind(this,this.onerror));
+		var img = this.images[image_nr];
+		if(img != null) {
+			if(img.used++ == 0) {
+				if(img.holePos == -1) {
+					var success = true;
+					if(img.texture.segment_holes.hole.length == 0) {
+						if(this.clear() == 0) success = false;
+					}
+					if(success) {
+						img.texture.reserveImageSlot(img);
+						if(img.url != "") {
+							this.imgLoadQueue.push(img);
+							if(this.isLoading++ == 0) this.imgLoadQueue.shift().load($bind(this,this.onImageLoad),$bind(this,this.onerror));
+						} else null;
 					}
 				}
 			}
-		}
+		} else null;
 		return img;
 	}
 	,unUseImage: function(image_nr) {
-		var img = this.image[image_nr];
+		var img = this.images[image_nr];
 		if(--img.used == 0) this.unusedImages.h[image_nr] = true;
 	}
 	,onImageLoad: function(img,w,h,data) {
-		if(img.holePos > -1) de_peote_view_texture_Texture.createSubTexture(this.texture,img.holePos % this.max_h_segments * this.segment_width,Math.floor(img.holePos / this.max_h_segments) * this.segment_height,w,h,data);
+		if(img.holePos > -1) img.texture.storeImage(img,w,h,data);
 		if(this.imgLoadQueue.length == 0) this.isLoading = 0; else this.imgLoadQueue.shift().load($bind(this,this.onImageLoad),$bind(this,this.onerror));
 	}
 	,clear: function() {
@@ -2524,16 +2640,52 @@ de_peote_view_texture_TextureCache.prototype = {
 		while( $it0.hasNext() ) {
 			var i = $it0.next();
 			this.unusedImages.remove(i);
-			unusedImg = this.image[i];
+			unusedImg = this.images[i];
 			if(unusedImg.used == 0) {
-				this.segment_holes.addHole(unusedImg.holePos);
+				unusedImg.texture.segment_holes.addHole(unusedImg.holePos);
 				unusedImg.holePos = -1;
 				numCleaned++;
 			}
 		}
 		return numCleaned;
 	}
-	,__class__: de_peote_view_texture_TextureCache
+	,__class__: de_peote_view_texture_ImageCache
+};
+var de_peote_view_texture_Texture = function(param) {
+	this.segment_width = param.iw;
+	this.segment_height = param.ih;
+	this.max_texture_width = param.w;
+	this.max_texture_height = param.h;
+	this.max_h_segments = Math.floor(this.max_texture_width / this.segment_width);
+	this.max_v_segments = Math.floor(this.max_texture_height / this.segment_height);
+	this.segment_holes = new de_peote_tools_Holes(this.max_h_segments * this.max_v_segments);
+	this.texture = de_peote_view_texture_Texture.createEmptyTexture(this.max_h_segments * this.segment_width,this.max_v_segments * this.segment_height);
+};
+de_peote_view_texture_Texture.__name__ = true;
+de_peote_view_texture_Texture.createEmptyTexture = function(width,height) {
+	var t = lime_graphics_opengl_GL.context.createTexture();
+	lime_graphics_opengl_GL.context.bindTexture(3553,t);
+	lime_graphics_opengl_GL.context.texImage2D(3553,0,6408,width,height,0,6408,5121,null);
+	lime_graphics_opengl_GL.context.texParameteri(3553,10240,9729);
+	lime_graphics_opengl_GL.context.texParameteri(3553,10241,9729);
+	lime_graphics_opengl_GL.context.bindTexture(3553,null);
+	return t;
+};
+de_peote_view_texture_Texture.prototype = {
+	reserveImageSlot: function(img) {
+		img.holePos = this.segment_holes.getHole();
+		img.tx = img.holePos % this.max_h_segments * this.segment_width;
+		img.ty = Math.floor(img.holePos / this.max_h_segments) * this.segment_height;
+	}
+	,storeImage: function(img,w,h,data) {
+		this.createSubTexture(this.texture,img.holePos % this.max_h_segments * this.segment_width,Math.floor(img.holePos / this.max_h_segments) * this.segment_height,w,h,data);
+	}
+	,createSubTexture: function(t,x,y,w,h,data) {
+		lime_graphics_opengl_GL.context.bindTexture(3553,t);
+		lime_graphics_opengl_GL.context.texSubImage2D(3553,0,x,y,w,h,6408,5121,data);
+		lime_graphics_opengl_GL.context.bindTexture(3553,null);
+	}
+	,__class__: de_peote_view_texture_Texture
 };
 var haxe_IMap = function() { };
 haxe_IMap.__name__ = true;
@@ -3216,6 +3368,12 @@ lime__$backend_html5_HTML5Application.prototype = {
 		window.addEventListener("resize",$bind(this,this.handleWindowEvent),false);
 		window.addEventListener("beforeunload",$bind(this,this.handleWindowEvent),false);
 		
+			if (!CanvasRenderingContext2D.prototype.isPointInStroke) {
+				CanvasRenderingContext2D.prototype.isPointInStroke = function (path, x, y) {
+					return false;
+				};
+			}
+			
 			var lastTime = 0;
 			var vendors = ['ms', 'moz', 'webkit', 'o'];
 			for (var x = 0; x < vendors.length && !window.requestAnimationFrame; ++x) {
@@ -3269,7 +3427,13 @@ lime__$backend_html5_HTML5Application.prototype = {
 			var keyCode = this.convertKeyCode(event.keyCode != null?event.keyCode:event.which);
 			var modifier;
 			modifier = (event.shiftKey?3:0) | (event.ctrlKey?192:0) | (event.altKey?768:0) | (event.metaKey?3072:0);
-			if(event.type == "keydown") this.parent.windows[0].onKeyDown.dispatch(keyCode,modifier); else this.parent.windows[0].onKeyUp.dispatch(keyCode,modifier);
+			if(event.type == "keydown") {
+				this.parent.windows[0].onKeyDown.dispatch(keyCode,modifier);
+				if(this.parent.windows[0].onKeyDown.canceled) event.preventDefault();
+			} else {
+				this.parent.windows[0].onKeyUp.dispatch(keyCode,modifier);
+				if(this.parent.windows[0].onKeyUp.canceled) event.preventDefault();
+			}
 		}
 	}
 	,handleWindowEvent: function(event) {
@@ -4940,6 +5104,7 @@ var lime_ui_Window = function(config) {
 	this.onFocusOut = new lime_app_Event_$Void_$Void();
 	this.onFocusIn = new lime_app_Event_$Void_$Void();
 	this.onEnter = new lime_app_Event_$Void_$Void();
+	this.onDropFile = new lime_app_Event_$String_$Void();
 	this.onDeactivate = new lime_app_Event_$Void_$Void();
 	this.onCreate = new lime_app_Event_$Void_$Void();
 	this.onClose = new lime_app_Event_$Void_$Void();
@@ -4959,6 +5124,8 @@ var lime_ui_Window = function(config) {
 		if(Object.prototype.hasOwnProperty.call(config,"x")) this.__x = config.x;
 		if(Object.prototype.hasOwnProperty.call(config,"y")) this.__y = config.y;
 		if(Object.prototype.hasOwnProperty.call(config,"fullscreen")) this.__fullscreen = config.fullscreen;
+		if(Object.prototype.hasOwnProperty.call(config,"borderless")) this.__borderless = config.borderless;
+		if(Object.prototype.hasOwnProperty.call(config,"resizable")) this.__resizable = config.resizable;
 		if(Object.prototype.hasOwnProperty.call(config,"title")) this.__title = config.title;
 	}
 	this.backend = new lime__$backend_html5_HTML5Window(this);
@@ -5054,16 +5221,18 @@ var ArrayBuffer = $global.ArrayBuffer || js_html_compat_ArrayBuffer;
 if(ArrayBuffer.prototype.slice == null) ArrayBuffer.prototype.slice = js_html_compat_ArrayBuffer.sliceImpl;
 var DataView = $global.DataView || js_html_compat_DataView;
 var Uint8Array = $global.Uint8Array || js_html_compat_Uint8Array._new;
-DType.SIMPLE = 0;
-DType.ANIM = 1;
-DType.ZINDEX = 4;
-DType.RGBA = 8;
-DType.ROTATION = 16;
-DType.SCALE = 32;
-DType.TILE = 64;
-DType.PICKING = 128;
+DisplaylistType.SIMPLE = 0;
+DisplaylistType.ANIM = 1;
+DisplaylistType.ZINDEX = 4;
+DisplaylistType.RGBA = 8;
+DisplaylistType.ROTATION = 16;
+DisplaylistType.SCALE = 32;
+DisplaylistType.TILE = 64;
+DisplaylistType.PICKING = 128;
+de_peote_view_ActiveTextures.slot = [33984,33985,33986,33987,33988,33989,33990,33991];
 de_peote_view_Buffer.VERTEX_COUNT = 6;
 de_peote_view_PeoteView.elementDefaults = { displaylist : 0, program : null, image : null, tile : null, x : 0, y : 0, w : 100, h : 100, z : 0, rgba : -1, rotation : 0, pivotX : 0, pivotY : 0};
+de_peote_view_Program.uTEXTURE = [5,6,7,8,9,10,11,12];
 de_peote_view_Program.rComment = new EReg("//.*?$","gm");
 de_peote_view_Program.rNewline = new EReg("\r?\n","g");
 de_peote_view_Program.rSpaces = new EReg("\t\t+","g");
@@ -5075,13 +5244,18 @@ de_peote_view_Program.rROTATIONstart = new EReg("#else_ROTATION(.*?)#end_ROTATIO
 de_peote_view_Program.rROTATIONend = new EReg("#if_ROTATION(.*?)#end_ROTATION","ig");
 de_peote_view_Program.rPICKINGstart = new EReg("#else_PICKING(.*?)#end_PICKING","ig");
 de_peote_view_Program.rPICKINGend = new EReg("#if_PICKING(.*?)#end_PICKING","ig");
-de_peote_view_Program.rMAX_TEXTURE_SIZE = new EReg("#MAX_TEXTURE_SIZE","g");
+de_peote_view_Program.rMAX_TEXTURE0 = new EReg("#MAX_TEXTURE0","g");
+de_peote_view_Program.rTEXTURE0start = new EReg("#else_TEXTURE0(.*?)#end_TEXTURE0","ig");
+de_peote_view_Program.rTEXTURE0end = new EReg("#if_TEXTURE0(.*?)#end_TEXTURE0","ig");
+de_peote_view_Program.rMAX_TEXTURE1 = new EReg("#MAX_TEXTURE1","g");
+de_peote_view_Program.rTEXTURE1start = new EReg("#else_TEXTURE1(.*?)#end_TEXTURE1","ig");
+de_peote_view_Program.rTEXTURE1end = new EReg("#if_TEXTURE1(.*?)#end_TEXTURE1","ig");
 de_peote_view_element_ElementAnimBuffer.VERTEX_COUNT = 6;
-de_peote_view_element_ElementAnimBuffer.defaultVertexShaderSrc = "\tattribute vec4 aPosition;\r\n\t\t\r\n\t\t#if_ZINDEX\r\n\t\tattribute float aZindex;\r\n\t\t#end_ZINDEX\r\n\t\t\r\n\t\t#if_RGBA\r\n\t\tattribute vec4 aRGBA;\r\n\t\tattribute vec4 aRGBA_END;\r\n\t\tvarying vec4 vRGBA;\r\n\t\t#end_RGBA\r\n\t\t\r\n\t\t#if_ROTATION\r\n\t\tattribute vec2 aRotation;\r\n\t\tattribute vec4 aPivot;\r\n\t\t#end_ROTATION\r\n\t\t\r\n\t\t#if_PICKING\r\n\t\tattribute vec4 aElement;\r\n\t\t\t#if_RGBA\r\n\t\t\t#else_RGBA\r\n\t\t\tvarying vec4 vRGBA;\r\n\t\t\t#end_RGBA\r\n\t\t#end_PICKING\r\n\t\t\t\r\n\t\tattribute vec2 aTime;\r\n\t\t\r\n\t\tattribute vec2 aTexCoord;\r\n\t\t\r\n\t\tvarying vec2 vTexCoord;\r\n\t\t\r\n\t\tuniform float uTime;\r\n\t\tuniform float uZoom;\r\n\t\tuniform vec2 uResolution;\r\n\t\tuniform vec2 uDelta;\r\n\t\t\r\n\t\tvoid main(void) {\r\n\t\t\t#if_RGBA\r\n\t\t\tvRGBA = aRGBA.wzyx + (aRGBA_END.wzyx - aRGBA.wzyx) * max( 0.0, min( (uTime-aTime.x) / (aTime.y - aTime.x), 1.0));\t\r\n\t\t\t#end_RGBA\r\n\t\t\t\r\n\t\t\t#if_PICKING\r\n\t\t\tif (uResolution.x == 1.0) {\r\n\t\t\t\tvRGBA = aElement;\r\n\t\t\t}\r\n\t\t\t#end_PICKING\r\n\t\t\t\r\n\t\t\tvTexCoord = aTexCoord;\r\n\t\t\t\r\n\t\t\tvec2 VertexPosStart = vec2 ( aPosition ); //vec2 (aPosition.x, aPosition.y);\r\n\t\t\tvec2 VertexPosEnd   = vec2 ( aPosition.z, aPosition.w);\r\n\t\t\t\r\n\t\t\t#if_ROTATION\r\n\t\t\tfloat alpha = aRotation.x + (aRotation.y - aRotation.x)\t* max( 0.0, min( (uTime-aTime.x) / (aTime.y - aTime.x), 1.0));\r\n\t\t\t\t\t\t\t\t\r\n\t\t\tVertexPosStart = (VertexPosStart - vec2(aPivot))\r\n\t\t\t\t\t\t\t* mat2 (\r\n\t\t\t\t\t\t\t\tvec2(cos(alpha), -sin(alpha)),\r\n\t\t\t\t\t\t\t\tvec2(sin(alpha),  cos(alpha))\r\n\t\t\t\t\t\t\t) + vec2(aPivot);\r\n\t\t\t\r\n\t\t\tVertexPosEnd = (VertexPosEnd -  vec2(aPivot.z, aPivot.w))\r\n\t\t\t\t\t\t\t* mat2 (\r\n\t\t\t\t\t\t\t\tvec2(cos(alpha), -sin(alpha)),\r\n\t\t\t\t\t\t\t\tvec2(sin(alpha),  cos(alpha))\r\n\t\t\t\t\t\t\t) + vec2(aPivot.z, aPivot.w);\r\n\t\t\t#end_ROTATION\r\n\t\t\t\t\r\n\t\t\tfloat zoom = uZoom;\r\n\t\t\tfloat width = uResolution.x;\r\n\t\t\tfloat height = uResolution.y;\r\n\t\t\tfloat deltaX = floor(uDelta.x);\r\n\t\t\tfloat deltaY = floor(uDelta.y);\r\n\t\t\t\r\n\t\t\tfloat right = width-deltaX*zoom;\r\n\t\t\tfloat left = -deltaX*zoom;\r\n\t\t\tfloat bottom = height-deltaY*zoom;\r\n\t\t\tfloat top = -deltaY * zoom;\r\n\t\t\t\t\t\t\r\n\t\t\tgl_Position = mat4 (\r\n\t\t\t\tvec4(2.0 / (right - left)*zoom, 0.0, 0.0, 0.0),\r\n\t\t\t\tvec4(0.0, 2.0 / (top - bottom)*zoom, 0.0, 0.0),\r\n\t\t\t\tvec4(0.0, 0.0, -0.001, 0.0),\r\n\t\t\t\tvec4(-(right + left) / (right - left), -(top + bottom) / (top - bottom), 0.0, 1.0)\r\n\t\t\t)\r\n\t\t\t* vec4( VertexPosStart + floor( \r\n\t\t\t\t\t\t\t\t(VertexPosEnd - VertexPosStart)\r\n\t\t\t\t\t\t\t\t* max( 0.0, min( (uTime-aTime.x) / (aTime.y - aTime.x), 1.0))\r\n\t\t\t\t\t\t\t\t* zoom) / zoom ,\r\n\t\t\t\t#if_ZINDEX\r\n\t\t\t\taZindex\r\n\t\t\t\t#else_ZINDEX\r\n\t\t\t\t0.0\r\n\t\t\t\t#end_ZINDEX\r\n\t\t\t\t, 1.0\r\n\t\t\t)\r\n\t\t\t// rotate displaylist\r\n\t\t\t/** mat4 (\r\n\t\t\t\tvec4(cos(winkel), -sin(winkel), 0.0, 0.0),\r\n\t\t\t\tvec4(sin(winkel),  cos(winkel), 0.0, 0.0),\r\n\t\t\t\tvec4(        0.0,          1.0, 0.0, 0.0),\r\n\t\t\t\tvec4(        0.0,          0.0, 0.0, 1.0)\r\n\t\t\t)*/\r\n\t\t\t;\r\n\t\t}\r\n\t";
-de_peote_view_element_ElementAnimBuffer.defaultFragmentShaderSrc = "\tvarying vec2 vTexCoord;\r\n\t\t#if_RGBA\r\n\t\tvarying vec4 vRGBA;\r\n\t\t#else_RGBA\r\n\t\t\t#if_PICKING\r\n\t\t\tvarying vec4 vRGBA;\r\n\t\t\t#end_PICKING\r\n\t\t#end_RGBA\r\n\t\t\r\n\t\tuniform sampler2D uImage;\r\n\t\t\r\n\t\t#if_PICKING\r\n\t\tuniform vec2 uResolution;\r\n\t\t#end_PICKING\r\n\t\t\r\n\t\tvoid main(void)\r\n\t\t{\r\n\t\t\tvec4 texel = texture2D(uImage, vTexCoord / #MAX_TEXTURE_SIZE);\r\n\t\t\tif(texel.a < 0.5) discard; // TODO (z-order/blend mode!!!)\r\n\t\t\t#if_PICKING\r\n\t\t\tif (uResolution.x == 1.0) { \r\n\t\t\t\tgl_FragColor = vRGBA; //vec4(1.0, 1.0, 1.0, 1.0);\r\n\t\t\t}\r\n\t\t\telse {\r\n\t\t\t\t#if_RGBA\r\n\t\t\t\tgl_FragColor = texel * vRGBA;\r\n\t\t\t\t#else_RGBA\r\n\t\t\t\tgl_FragColor = texel;\r\n\t\t\t\t#end_RGBA\t\t\t\t\r\n\t\t\t}\r\n\t\t\t#else_PICKING\r\n\t\t\t\t#if_RGBA\r\n\t\t\t\tgl_FragColor = texel * vRGBA;\r\n\t\t\t\t#else_RGBA\r\n\t\t\t\tgl_FragColor = texel;\r\n\t\t\t\t#end_RGBA\r\n\t\t\t#end_PICKING\r\n\t\t}\r\n\t";
+de_peote_view_element_ElementAnimBuffer.defaultVertexShaderSrc = "\tattribute vec4 aPosition;\r\n\t\t\r\n\t\t#if_ZINDEX\r\n\t\tattribute float aZindex;\r\n\t\t#end_ZINDEX\r\n\t\t\r\n\t\t#if_RGBA\r\n\t\tattribute vec4 aRGBA;\r\n\t\tattribute vec4 aRGBA_END;\r\n\t\tvarying vec4 vRGBA;\r\n\t\t#end_RGBA\r\n\t\t\r\n\t\t#if_ROTATION\r\n\t\tattribute vec2 aRotation;\r\n\t\tattribute vec4 aPivot;\r\n\t\t#end_ROTATION\r\n\t\t\r\n\t\t#if_PICKING\r\n\t\tattribute vec4 aElement;\r\n\t\t\t#if_RGBA\r\n\t\t\t#else_RGBA\r\n\t\t\tvarying vec4 vRGBA;\r\n\t\t\t#end_RGBA\r\n\t\t#end_PICKING\r\n\t\t\t\r\n\t\tattribute vec2 aTime;\r\n\t\t\r\n\t\tattribute vec2 aTexCoord;\r\n\t\t\r\n\t\tvarying vec2 vTexCoord;\r\n\t\t\r\n\t\tuniform float uTime;\r\n\t\tuniform float uZoom;\r\n\t\tuniform vec2 uResolution;\r\n\t\tuniform vec2 uDelta;\r\n\t\t\r\n\t\tvoid main(void) {\r\n\t\t\t#if_RGBA\r\n\t\t\tvRGBA = aRGBA.wzyx + (aRGBA_END.wzyx - aRGBA.wzyx) * max( 0.0, min( (uTime-aTime.x) / (aTime.y - aTime.x), 1.0));\t\r\n\t\t\t#end_RGBA\r\n\t\t\t\r\n\t\t\t#if_PICKING\r\n\t\t\tif (uResolution.x == 1.0) {\r\n\t\t\t\tvRGBA = aElement;\r\n\t\t\t}\r\n\t\t\t#end_PICKING\r\n\t\t\t\r\n\t\t\tvTexCoord = aTexCoord;\r\n\t\t\t\r\n\t\t\tvec2 VertexPosStart = vec2 ( aPosition ); //vec2 (aPosition.x, aPosition.y);\r\n\t\t\tvec2 VertexPosEnd   = vec2 ( aPosition.z, aPosition.w);\r\n\t\t\t\r\n\t\t\t#if_ROTATION\r\n\t\t\tfloat alpha = aRotation.x + (aRotation.y - aRotation.x)\t* max( 0.0, min( (uTime-aTime.x) / (aTime.y - aTime.x), 1.0));\r\n\t\t\t\t\t\t\t\t\r\n\t\t\tVertexPosStart = (VertexPosStart - vec2(aPivot))\r\n\t\t\t\t\t\t\t* mat2 (\r\n\t\t\t\t\t\t\t\tvec2(cos(alpha), -sin(alpha)),\r\n\t\t\t\t\t\t\t\tvec2(sin(alpha),  cos(alpha))\r\n\t\t\t\t\t\t\t) + vec2(aPivot);\r\n\t\t\t\r\n\t\t\tVertexPosEnd = (VertexPosEnd -  vec2(aPivot.z, aPivot.w))\r\n\t\t\t\t\t\t\t* mat2 (\r\n\t\t\t\t\t\t\t\tvec2(cos(alpha), -sin(alpha)),\r\n\t\t\t\t\t\t\t\tvec2(sin(alpha),  cos(alpha))\r\n\t\t\t\t\t\t\t) + vec2(aPivot.z, aPivot.w);\r\n\t\t\t#end_ROTATION\r\n\t\t\t\t\r\n\t\t\tfloat zoom = uZoom;\r\n\t\t\tfloat width = uResolution.x;\r\n\t\t\tfloat height = uResolution.y;\r\n\t\t\tfloat deltaX = floor(uDelta.x);\r\n\t\t\tfloat deltaY = floor(uDelta.y);\r\n\t\t\t\r\n\t\t\tfloat right = width-deltaX*zoom;\r\n\t\t\tfloat left = -deltaX*zoom;\r\n\t\t\tfloat bottom = height-deltaY*zoom;\r\n\t\t\tfloat top = -deltaY * zoom;\r\n\t\t\t\t\t\t\r\n\t\t\tgl_Position = mat4 (\r\n\t\t\t\tvec4(2.0 / (right - left)*zoom, 0.0, 0.0, 0.0),\r\n\t\t\t\tvec4(0.0, 2.0 / (top - bottom)*zoom, 0.0, 0.0),\r\n\t\t\t\tvec4(0.0, 0.0, -1.0, 0.0), // TODO\r\n\t\t\t\tvec4(-(right + left) / (right - left), -(top + bottom) / (top - bottom), 0.0, 1.0)\r\n\t\t\t)\r\n\t\t\t* vec4( VertexPosStart + floor( \r\n\t\t\t\t\t\t\t\t(VertexPosEnd - VertexPosStart)\r\n\t\t\t\t\t\t\t\t* max( 0.0, min( (uTime-aTime.x) / (aTime.y - aTime.x), 1.0))\r\n\t\t\t\t\t\t\t\t* zoom) / zoom ,\r\n\t\t\t\t#if_ZINDEX\r\n\t\t\t\taZindex\r\n\t\t\t\t#else_ZINDEX\r\n\t\t\t\t0.0\r\n\t\t\t\t#end_ZINDEX\r\n\t\t\t\t, 1.0\r\n\t\t\t)\r\n\t\t\t// rotate displaylist\r\n\t\t\t// *mat4 (\r\n\t\t\t//\tvec4(cos(winkel), -sin(winkel), 0.0, 0.0),\r\n\t\t\t//\tvec4(sin(winkel),  cos(winkel), 0.0, 0.0),\r\n\t\t\t//\tvec4(        0.0,          1.0, 0.0, 0.0),\r\n\t\t\t//\tvec4(        0.0,          0.0, 0.0, 1.0)\r\n\t\t\t//)\r\n\t\t\t;\r\n\t\t}\r\n\t";
+de_peote_view_element_ElementAnimBuffer.defaultFragmentShaderSrc = "\tvarying vec2 vTexCoord;\r\n\t\t#if_RGBA\r\n\t\tvarying vec4 vRGBA;\r\n\t\t#else_RGBA\r\n\t\t\t#if_PICKING\r\n\t\t\tvarying vec4 vRGBA;\r\n\t\t\t#end_PICKING\r\n\t\t#end_RGBA\r\n\t\t\r\n\t\t#if_PICKING\r\n\t\tuniform vec2 uResolution;\r\n\t\t#end_PICKING\r\n\t\t\r\n\t\t\r\n\t\t#if_TEXTURE0\r\n\t\tuniform sampler2D uTexture0;\r\n\t\t#end_TEXTURE0\r\n\t\t\r\n\t\t#if_TEXTURE1\r\n\t\tuniform sampler2D uTexture1;\r\n\t\t#end_TEXTURE1\r\n\t\t\r\n\t\tvoid main(void)\r\n\t\t{\r\n\t\t\t#if_TEXTURE0\r\n\t\t\tvec4 texel = texture2D(uTexture0, vTexCoord / #MAX_TEXTURE0);\r\n\t\t\t#else_TEXTURE0\r\n\t\t\tvec4 texel = vec4(1.0, 1.0, 1.0, 1.0);\r\n\t\t\t#end_TEXTURE0\r\n\t\t\t\r\n\t\t\t// if use more than one texture unit to combine or do something crazy here:)\r\n\t\t\t#if_TEXTURE1\r\n\t\t\ttexel = texel * texture2D(uTexture1, vTexCoord / #MAX_TEXTURE0);\r\n\t\t\t#end_TEXTURE1\r\n\t\t\t// ... TEXTURE2 ...TEXTURE3 ...\t\t\t\r\n\t\t\t\r\n\t\t\tif (texel.a < 0.5) discard; // TODO (z-order/blend mode!!!)\r\n\t\t\t\r\n\t\t\t#if_PICKING\r\n\t\t\tif (uResolution.x == 1.0) { \r\n\t\t\t\tgl_FragColor = vRGBA; // vRGBA color defines element-number for gl-picking;\r\n\t\t\t}\r\n\t\t\telse {\r\n\t\t\t\t#if_RGBA\r\n\t\t\t\tgl_FragColor = texel * vRGBA;\r\n\t\t\t\t#else_RGBA\r\n\t\t\t\tgl_FragColor = texel;\r\n\t\t\t\t#end_RGBA\t\t\t\t\r\n\t\t\t}\r\n\t\t\t#else_PICKING\r\n\t\t\t\t#if_RGBA\r\n\t\t\t\tgl_FragColor = texel * vRGBA;\r\n\t\t\t\t#else_RGBA\r\n\t\t\t\tgl_FragColor = texel;\r\n\t\t\t\t#end_RGBA\r\n\t\t\t#end_PICKING\r\n\t\t}\r\n\t";
 de_peote_view_element_ElementSimpleBuffer.VERTEX_COUNT = 6;
-de_peote_view_element_ElementSimpleBuffer.defaultVertexShaderSrc = "\tattribute vec2 aPosition;\r\n\t\t\r\n\t\t#if_ZINDEX\r\n\t\tattribute float aZindex;\r\n\t\t#end_ZINDEX\r\n\t\t\r\n\t\t#if_RGBA\r\n\t\tattribute vec4 aRGBA;\r\n\t\tvarying vec4 vRGBA;\r\n\t\t#end_RGBA\r\n\r\n\t\t#if_PICKING\r\n\t\tattribute vec4 aElement;\r\n\t\t\t#if_RGBA\r\n\t\t\t#else_RGBA\r\n\t\t\tvarying vec4 vRGBA;\r\n\t\t\t#end_RGBA\r\n\t\t#end_PICKING\r\n\t\t\t\r\n\t\tattribute vec2 aTexCoord;\r\n\t\t\r\n\t\tvarying vec2 vTexCoord;\r\n\t\t\r\n\t\tuniform float uTime;\r\n\t\tuniform float uZoom;\r\n\t\tuniform vec2 uResolution;\r\n\t\tuniform vec2 uDelta;\r\n\t\t\r\n\t\tvoid main(void) {\r\n\t\t\t#if_RGBA\r\n\t\t\tvRGBA = aRGBA.wzyx;\r\n\t\t\t#end_RGBA\r\n\t\t\t\r\n\t\t\t#if_PICKING\r\n\t\t\tif (uResolution.x == 1.0) {\r\n\t\t\t\tvRGBA = aElement;\r\n\t\t\t}\r\n\t\t\t#end_PICKING\r\n\t\t\t\r\n\t\t\tvTexCoord = aTexCoord;\r\n\t\t\t\t\t\t\r\n\t\t\tfloat zoom = uZoom;\r\n\t\t\tfloat width = uResolution.x;\r\n\t\t\tfloat height = uResolution.y;\r\n\t\t\tfloat deltaX = floor(uDelta.x);\r\n\t\t\tfloat deltaY = floor(uDelta.y);\r\n\t\t\t\r\n\t\t\tfloat right = width-deltaX*zoom;\r\n\t\t\tfloat left = -deltaX*zoom;\r\n\t\t\tfloat bottom = height-deltaY*zoom;\r\n\t\t\tfloat top = -deltaY * zoom;\r\n\t\t\t\r\n\t\t\tgl_Position = mat4 (\r\n\t\t\t\tvec4(2.0 / (right - left)*zoom, 0.0, 0.0, 0.0),\r\n\t\t\t\tvec4(0.0, 2.0 / (top - bottom)*zoom, 0.0, 0.0),\r\n\t\t\t\tvec4(0.0, 0.0, -0.001, 0.0),\r\n\t\t\t\tvec4(-(right + left) / (right - left), -(top + bottom) / (top - bottom), 0.0, 1.0)\r\n\t\t\t)\r\n\t\t\t* vec4 (aPosition ,\r\n\t\t\t\t#if_ZINDEX\r\n\t\t\t\taZindex\r\n\t\t\t\t#else_ZINDEX\r\n\t\t\t\t0.0\r\n\t\t\t\t#end_ZINDEX\r\n\t\t\t\t, 1.0\r\n\t\t\t\t);\r\n\t\t}\r\n\t";
-de_peote_view_element_ElementSimpleBuffer.defaultFragmentShaderSrc = "\tvarying vec2 vTexCoord;\r\n\t\t#if_RGBA\r\n\t\tvarying vec4 vRGBA;\r\n\t\t#else_RGBA\r\n\t\t\t#if_PICKING\r\n\t\t\tvarying vec4 vRGBA;\r\n\t\t\t#end_PICKING\r\n\t\t#end_RGBA\r\n\t\t\r\n\t\tuniform sampler2D uImage;\r\n\t\t\r\n\t\t#if_PICKING\r\n\t\tuniform vec2 uResolution;\r\n\t\t#end_PICKING\r\n\t\t\r\n\t\tvoid main(void)\r\n\t\t{\r\n\t\t\tvec4 texel = texture2D(uImage, vTexCoord / #MAX_TEXTURE_SIZE);\r\n\t\t\tif(texel.a < 0.5) discard; // TODO (z-order/blend mode!!!)\r\n\t\t\t#if_PICKING\r\n\t\t\tif (uResolution.x == 1.0) { \r\n\t\t\t\tgl_FragColor = vRGBA; //vec4(1.0, 1.0, 1.0, 1.0);\r\n\t\t\t}\r\n\t\t\telse {\r\n\t\t\t\t#if_RGBA\r\n\t\t\t\tgl_FragColor = texel * vRGBA;\r\n\t\t\t\t#else_RGBA\r\n\t\t\t\tgl_FragColor = texel;\r\n\t\t\t\t#end_RGBA\t\t\t\t\r\n\t\t\t}\r\n\t\t\t#else_PICKING\r\n\t\t\t\t#if_RGBA\r\n\t\t\t\tgl_FragColor = texel * vRGBA;\r\n\t\t\t\t#else_RGBA\r\n\t\t\t\tgl_FragColor = texel;\r\n\t\t\t\t#end_RGBA\r\n\t\t\t#end_PICKING\r\n\t\t}\r\n\t";
+de_peote_view_element_ElementSimpleBuffer.defaultVertexShaderSrc = "\tattribute vec2 aPosition;\r\n\t\t\r\n\t\t#if_ZINDEX\r\n\t\tattribute float aZindex;\r\n\t\t#end_ZINDEX\r\n\t\t\r\n\t\t#if_RGBA\r\n\t\tattribute vec4 aRGBA;\r\n\t\tvarying vec4 vRGBA;\r\n\t\t#end_RGBA\r\n\r\n\t\t#if_PICKING\r\n\t\tattribute vec4 aElement;\r\n\t\t\t#if_RGBA\r\n\t\t\t#else_RGBA\r\n\t\t\tvarying vec4 vRGBA;\r\n\t\t\t#end_RGBA\r\n\t\t#end_PICKING\r\n\t\t\t\r\n\t\tattribute vec2 aTexCoord;\r\n\t\t\r\n\t\tvarying vec2 vTexCoord;\r\n\t\t\r\n\t\tuniform float uTime;\r\n\t\tuniform float uZoom;\r\n\t\tuniform vec2 uResolution;\r\n\t\tuniform vec2 uDelta;\r\n\t\t\r\n\t\tvoid main(void) {\r\n\t\t\t#if_RGBA\r\n\t\t\tvRGBA = aRGBA.wzyx;\r\n\t\t\t#end_RGBA\r\n\t\t\t\r\n\t\t\t#if_PICKING\r\n\t\t\tif (uResolution.x == 1.0) {\r\n\t\t\t\tvRGBA = aElement;\r\n\t\t\t}\r\n\t\t\t#end_PICKING\r\n\t\t\t\r\n\t\t\tvTexCoord = aTexCoord;\r\n\t\t\t\t\t\t\r\n\t\t\tfloat zoom = uZoom;\r\n\t\t\tfloat width = uResolution.x;\r\n\t\t\tfloat height = uResolution.y;\r\n\t\t\tfloat deltaX = floor(uDelta.x);\r\n\t\t\tfloat deltaY = floor(uDelta.y);\r\n\t\t\t\r\n\t\t\tfloat right = width-deltaX*zoom;\r\n\t\t\tfloat left = -deltaX*zoom;\r\n\t\t\tfloat bottom = height-deltaY*zoom;\r\n\t\t\tfloat top = -deltaY * zoom;\r\n\t\t\t\r\n\t\t\tgl_Position = mat4 (\r\n\t\t\t\tvec4(2.0 / (right - left)*zoom, 0.0, 0.0, 0.0),\r\n\t\t\t\tvec4(0.0, 2.0 / (top - bottom)*zoom, 0.0, 0.0),\r\n\t\t\t\tvec4(0.0, 0.0, -1.0, 0.0),\r\n\t\t\t\tvec4(-(right + left) / (right - left), -(top + bottom) / (top - bottom), 0.0, 1.0)\r\n\t\t\t)\r\n\t\t\t* vec4 (aPosition ,\r\n\t\t\t\t#if_ZINDEX\r\n\t\t\t\taZindex\r\n\t\t\t\t#else_ZINDEX\r\n\t\t\t\t0.0\r\n\t\t\t\t#end_ZINDEX\r\n\t\t\t\t, 1.0\r\n\t\t\t\t);\r\n\t\t}\r\n\t";
+de_peote_view_element_ElementSimpleBuffer.defaultFragmentShaderSrc = "\tvarying vec2 vTexCoord;\r\n\t\t#if_RGBA\r\n\t\tvarying vec4 vRGBA;\r\n\t\t#else_RGBA\r\n\t\t\t#if_PICKING\r\n\t\t\tvarying vec4 vRGBA;\r\n\t\t\t#end_PICKING\r\n\t\t#end_RGBA\r\n\t\t\r\n\t\t#if_PICKING\r\n\t\tuniform vec2 uResolution;\r\n\t\t#end_PICKING\r\n\t\t\r\n\t\t\r\n\t\t#if_TEXTURE0\r\n\t\tuniform sampler2D uTexture0;\r\n\t\t#end_TEXTURE0\r\n\t\t\r\n\t\t#if_TEXTURE1\r\n\t\tuniform sampler2D uTexture1;\r\n\t\t#end_TEXTURE1\r\n\t\t\r\n\t\tvoid main(void)\r\n\t\t{\t\r\n\t\t\t#if_TEXTURE0\r\n\t\t\tvec4 texel = texture2D(uTexture0, vTexCoord / #MAX_TEXTURE0);\r\n\t\t\t#else_TEXTURE0\r\n\t\t\tvec4 texel = vec4(1.0, 1.0, 1.0, 1.0);\r\n\t\t\t#end_TEXTURE0\r\n\t\t\t\r\n\t\t\t// if use more than one texture unit to combine or do something crazy here:)\r\n\t\t\t#if_TEXTURE1\r\n\t\t\ttexel = texel * texture2D(uTexture1, vTexCoord / #MAX_TEXTURE0);\r\n\t\t\t#end_TEXTURE1\r\n\t\t\t// ... TEXTURE2 ...TEXTURE3 ...\r\n\t\t\t\r\n\t\t\tif (texel.a < 0.5) discard; // TODO (z-order/blend mode!!!)\r\n\t\t\t\r\n\t\t\t#if_PICKING\r\n\t\t\tif (uResolution.x == 1.0) { \r\n\t\t\t\tgl_FragColor = vRGBA; // vRGBA color defines element-number for gl-picking;\r\n\t\t\t}\r\n\t\t\telse {\r\n\t\t\t\t#if_RGBA\r\n\t\t\t\tgl_FragColor = texel * vRGBA;\r\n\t\t\t\t#else_RGBA\r\n\t\t\t\tgl_FragColor = texel;\r\n\t\t\t\t#end_RGBA\t\t\t\t\r\n\t\t\t}\r\n\t\t\t#else_PICKING\r\n\t\t\t\t#if_RGBA\r\n\t\t\t\tgl_FragColor = texel * vRGBA;\r\n\t\t\t\t#else_RGBA\r\n\t\t\t\tgl_FragColor = texel;\r\n\t\t\t\t#end_RGBA\r\n\t\t\t#end_PICKING\r\n\t\t}\r\n\t";
 haxe_io_FPHelper.i64tmp = (function($this) {
 	var $r;
 	var x = new haxe__$Int64__$_$_$Int64(0,0);

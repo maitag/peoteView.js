@@ -32,26 +32,41 @@ var peoteView;
 
 function onLimeEmbed()
 {	
-	peoteView = PeoteView.init(1, 2); // max_displaylists, max_programs
-	
-	// set shaders
-	peoteView.setProgram(0, "assets/lyapunov_02.frag");
-	peoteView.setProgram(1); // default image program
+	peoteView = PeoteView.init({
+			maxDisplaylists: 1,
+			maxPrograms:     2,
+			maxImages:       2
+		});
 	
 	// set images
-	//peoteView.setImage(0, "assets/peote_font_green.png", 512, 512);
-	peoteView.setImage(1, "assets/peote_font_white.png", 512, 512);
-	peoteView.setImage(2, "assets/peote_tiles.png", 512, 512);
+	peoteView.setTexture({ texture:0, w:1024, h:512, iw:512, ih:512 });
+
+	// set images
+	peoteView.setImage({ image:1, texture:0, filename:"assets/peote_font_white.png" });
+	peoteView.setImage({ image:0, texture:0, filename:"assets/peote_tiles.png" });
+	
+	// set shaders
+	peoteView.setProgram({
+		program:0,
+		fshader:"assets/lyapunov_02.frag"
+	});
+	peoteView.setProgram({
+		program:1,
+		texture:0 // default image program
+	});
 	
 	// new Displaylist
-	peoteView.setDisplaylist( { displaylist:0, type:DType.ANIM|DType.RGBA,
+	peoteView.setDisplaylist({
+		displaylist:0,
+		type:DisplaylistType.ANIM|DisplaylistType.RGBA|DisplaylistType.ZINDEX,
 		enable:true,
-		elements:100000, max_programs:2, segments:1000,
+		maxElements:100000,
+		maxPrograms:2,
+		bufferSegments:1000,
 		w:1920, h:1280,
 		z:0
 	});
-	
-	
+
 	loadImageData('assets/peote_font_green.png', onLoadAsciiFont);	
 }
 
@@ -62,7 +77,7 @@ function onLoadAsciiFont(img)
 	peoteView.setElement({ element:bg_nr,
 			time:t,
 			x:0, y:0, w:4000, h:4000,
-			z: -2,
+			z: 0,
 			program:0, tw:1000, th:1000,
 	});
 	
@@ -91,7 +106,7 @@ function onLoadAsciiFont(img)
 	.add(function(d){
 						var peoteTimer1 = new PeoteTimer();
 						peoteTimer1
-						.add(function(d){ animElements(drawLetter("W", img, 1,1, 50, 220 ,8,8, 2), d); }, 	1.0, 1 )
+						.add(function(d){ animElements(drawLetter("W", img, 1,1, 50,  220 ,8,8, 2), d); }, 	1.0, 1 )
 						.add(function(d){ animElements(drawLetter("o", img, 1,1, 200, 220 ,8,8, 2), d); }, 	1.0, 0.1 )
 						.add(function(d){ animElements(drawLetter("r", img, 1,1, 330, 220 ,8,8, 2), d); }, 	1.0, 0.2 )
 						.add(function(d){ animElements(drawLetter("d", img, 1,1, 460, 220 ,8,8, 2), d); }, 	1.0, 0.3 )
@@ -132,7 +147,7 @@ function deleteElements(elems)
 
 function drawLetter(_letter, img, shader_nr, image_nr, x, y, w, h, type)
 {
-	//console.log("drawLetter",letter_string, img);
+	//console.log("drawLetter",_letter, img, shader_nr, image_nr, type );
 	shader_nr = shader_nr || 0;
 	image_nr = image_nr || 0;
 	x = x||0; y=y||0; w=w||4; h=h||4;
@@ -153,14 +168,14 @@ function drawLetter(_letter, img, shader_nr, image_nr, x, y, w, h, type)
 		elems.push(nr);
 		if (type == 1)
 			peoteView.setElement( { element:nr++,
-				x:x+_x*w, y:y+_y*h, z:0,
+				x:x+_x*w, y:y+_y*h, z:1,
 				w:w, h:h,
 				program:shader_nr, image:image_nr, tile:tile_nr,
 				//time:PeoteView.getTime()
 			});
 		else if (type == 2)
 			peoteView.setElement( { element:nr++,
-				x:x+_x*w, y:y+_y*h, z:0,
+				x:x+_x*w, y:y+_y*h, z:1,
 				w:w, h:h,
 				rgba:230+randomInt(20) << 24 | 220+randomInt(36) << 16 | randomInt(35) << 8 | 255,
 				program:shader_nr, image:image_nr, tile:(typeof(_letter) == "string") ? _letter.charCodeAt(0) : _letter,
@@ -168,7 +183,7 @@ function drawLetter(_letter, img, shader_nr, image_nr, x, y, w, h, type)
 			});
 		else 
 			peoteView.setElement( { element:nr++,
-				x:x+_x*w, y:y+_y*h, z:0,
+				x:x+_x*w, y:y+_y*h, z:1,
 				w:w, h:h,
 				program:shader_nr, image:image_nr,
 				//time:PeoteView.getTime()
